@@ -9,21 +9,19 @@
 <html lang="en">
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="~/css/LoginCSS.css">
+    <link rel="stylesheet" href="~/css/LoginRegistration.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
     <script src="~/Scripts/web script/registerJS.js" type="text/javascript"></script>
     <script src="~/Scripts/web script/dateValidator.js" type="text/javascript"></script>
     <script src="~/Scripts/web script/passwordMatch.js" type="text/javascript"></script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
-
-    <link rel="stylesheet" href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/css/intlTelInput.css" />
-    <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-
     <script src="~/Scripts/web script/PhoneCountryDisplay.js" type="text/javascript"></script>
 </head>
 <body>
@@ -58,9 +56,8 @@
             <label for="addressLabel">ADDRESS</label>
             <input type="text" id="address" name="address" required>
 
-            <label for="phoneLabel">PHONE NUMBER</label>
-            <input type="tel" id="phone" name="phone" required>
-
+            <label for="phoneNumber">PHONE NUMBER</label>
+            <input id="phone" type="tel" required>
 
             <button onclick=register_button() id="btnMain">Register Now</button><br>
 

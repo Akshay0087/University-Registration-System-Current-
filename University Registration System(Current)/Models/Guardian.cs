@@ -1,4 +1,4 @@
-﻿namespace UniversitySystemRegistration.Models.Entity
+﻿namespace UniversitySystemRegistration.Models
 {
     public class Guardian
     {

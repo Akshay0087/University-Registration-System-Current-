@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UniversitySystemRegistration.Models.Entity;
+using UniversitySystemRegistration.Models;
 
 namespace UniversitySystemRegistration.Business_Logic
 {

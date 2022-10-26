@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using University_Registration_System_Current_.Business_Logic;
+﻿using System.Web.Mvc;
 using UniversitySystemRegistration.Business_Logic;
-using UniversitySystemRegistration.Models.Entity;
+using UniversitySystemRegistration.Models;
 
 namespace University_Registration_System_Current_.Controllers
 {
@@ -24,13 +19,14 @@ namespace University_Registration_System_Current_.Controllers
             return View();
         }
 
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Student Student)
         {
             
             return View();
-        }
+        }*/
 
         
         [HttpPost]
@@ -48,11 +44,23 @@ namespace University_Registration_System_Current_.Controllers
             return Json(new 
             { 
               result = flag, 
-              url = Url.Action("Index", "RequestInterface"),
+              url = Url.Action("Main", "RequestInterface"),
               
             });
         }
-        
+
+        [HttpPost]
+        public JsonResult logout()
+        {
+            this.Session.Clear();
+
+            return Json(new
+            {
+                url = Url.Action("Login", "Login"),
+
+            });
+        }
+
 
     }
 }

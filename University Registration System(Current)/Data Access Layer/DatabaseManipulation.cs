@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.DynamicData;
-using System.Runtime.Remoting.Messaging;
-using University_Registration_System_Current_.Data_Access_Layer;
 
 namespace UniversitySystemRegistration.Data_Access_Layer
 {
@@ -29,7 +25,7 @@ namespace UniversitySystemRegistration.Data_Access_Layer
             try
             {
                 string connetionString;
-                connetionString = "Data Source=L-PW02X091;Initial Catalog=UniversityRegsitrationSystem;Integrated Security=True";
+                connetionString = "Data Source=L-PW02X091;Initial Catalog=UniversityRegistrationDB;Integrated Security=True";
                 cnn = new SqlConnection(connetionString);
                 cnn.Open();
             }

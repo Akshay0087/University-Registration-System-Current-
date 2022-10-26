@@ -1,11 +1,11 @@
 ﻿using System;
-using University_Registration_System_Current_.Entity;
+using University_Registration_System_Current_;
 
-namespace UniversitySystemRegistration.Models.Entity
+namespace UniversitySystemRegistration.Models
 {
     public class User
     {
-        public Student student = null;
+        public Student student =null;
         public string nid { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }

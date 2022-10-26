@@ -1,7 +1,6 @@
-﻿using System.Text;
-using System;
+﻿using System;
 using System.Security.Cryptography;
-using University_Registration_System_Current_.Business_Logic;
+using System.Text;
 
 namespace UniversitySystemRegistration.Business_Logic
 {

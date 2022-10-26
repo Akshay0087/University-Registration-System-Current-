@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using UniversitySystemRegistration.Business_Logic;
 using UniversitySystemRegistration.Data_Access_Layer;
-using UniversitySystemRegistration.Models.Entity;
+using UniversitySystemRegistration.Models;
 
 namespace University_Registration_System_Current_.Data_Access_Layer
 {
@@ -19,7 +19,7 @@ namespace University_Registration_System_Current_.Data_Access_Layer
         IDatabaseManipulation _DatabaseManipulation;
 
         const string loginCheckQuery = "SELECT PasswordHash FROM Users where EmailAddress=@emailAddress";
-        const string infoCheckQuery = "SELECT * FROM User where EmailAddress=@emailAddress OR Phone=@phoneNum OR NID=@nid";
+        const string infoCheckQuery = "SELECT UserId FROM Users where EmailAddress=@emailAddress OR Phone=@phoneNum OR NID=@nid";
 
         public UserDAL(IDatabaseManipulation DatabaseManipulation,IPasswordHashing PasswordHashing) {
             _PasswordHashing = PasswordHashing;
