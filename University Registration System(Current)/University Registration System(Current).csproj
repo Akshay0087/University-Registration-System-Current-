@@ -160,6 +160,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\navBar.css" />
     <Content Include="css\R.jpg" />
     <Content Include="css\form_style.css" />
     <Content Include="css\university.jpg" />
@@ -184,6 +185,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\web script\dateValidator.js" />
     <Content Include="Scripts\web script\form.js" />
+    <Content Include="Scripts\web script\FrontendValidation.js" />
     <Content Include="Scripts\web script\GetSessionRole.js" />
     <Content Include="Scripts\web script\loginJS.js" />
     <Content Include="Scripts\web script\passwordMatch.js" />

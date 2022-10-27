@@ -36,9 +36,9 @@ namespace University_Registration_System_Current_.Controllers
 
             if (flag)
             {
-               User employeeInfo = userService.GetUserData(userData);
-               this.Session["CurrentUser"] = employeeInfo;
-               this.Session["CurrentRole"] = employeeInfo.role;
+               User authenticatedUser= userService.GetUserData(userData);
+               this.Session["CurrentUser"] = authenticatedUser;
+               this.Session["CurrentRole"] = authenticatedUser.role;
             }
 
             return Json(new 

@@ -27,6 +27,8 @@ function register_button() {
 	var phone = $("#phone").val();
 	var address = $("#address").val();
 
+	toastr.options.timeOut = 100000;
+
 	if (emailAddress == "" || password == "" || firstname == "" || lastname == "" || NID == "" || address == "") {
 		toastr.error("Please fill the required fields");
 	} else {

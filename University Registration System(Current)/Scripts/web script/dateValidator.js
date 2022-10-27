@@ -8,6 +8,8 @@
 	var min_dob = new Date(today.getFullYear() - ageMin, today.getMonth(), today.getDate());
 	var max_dob = new Date(today.getFullYear() - ageMax, today.getMonth(), today.getDate());
 
+	toastr.options.timeOut = 100000;
+
 	if (min_dob.getTime() < my_dob.getTime()) {
 		toastr.error("Age should be greater than " + ageMin);
 		document.getElementById("dateB").value = document.getElementById("dateB").defaultValue;

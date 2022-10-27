@@ -51,7 +51,7 @@ namespace UniversitySystemRegistration.Business_Logic
         public bool insertUserData(User user)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            //(@emailAddress,@nid,@firstname,@lastname,@address,@phone,@dob,@passwordhash,@role)
+           
             parameters.Add(new SqlParameter("@emailAddress", user.emailAddress));
             parameters.Add(new SqlParameter("@address", user.address));
             parameters.Add(new SqlParameter("@nid", user.nid));
@@ -67,11 +67,14 @@ namespace UniversitySystemRegistration.Business_Logic
         }
         public User GetUserData(User user)
         {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            parameters.Add(new SqlParameter("@emailAddress", user.emailAddress));
 
             User user1 = new User();
+
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@emailAddress", user.emailAddress));
+
+            
             _databaseManipulation.Open();
             var dataTable = _databaseManipulation.GetInfo(getUserDataQuery, parameters);
             _databaseManipulation.Close();
@@ -115,7 +118,7 @@ namespace UniversitySystemRegistration.Business_Logic
             int status = 1; //pass email to DAL to check existant
             if (status == 1)
             {
-                //pass arg to DAL to insert user in db
+                //pass arg to DAL to delete user in db
                 return "Sucessful Deletion";
             }
             else

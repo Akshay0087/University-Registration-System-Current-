@@ -7,14 +7,16 @@
 });
 
 function login_button() {
-	//toastr.options.timeOut = 500000;
-	var emailAddress = $("#email").val(); // read email address input
-	var password = $("#pword").val(); // read password input
+	
+	var emailAddress = $("#email").val(); 
+	var password = $("#pword").val(); 
+
+	toastr.options.timeOut = 100000;
 
 	if (emailAddress == "" || password == "") {
 		toastr.error("Please fill the required fields");
 	} else {
-		// create object to map LoginModel
+		
 		var authObj = {
 			emailAddress: emailAddress,
 			passwordHash: password

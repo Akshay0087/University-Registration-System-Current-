@@ -34,7 +34,6 @@ namespace University_Registration_System_Current_.Data_Access_Layer
 
             parameters.Add(new SqlParameter("@emailAddress", userData.emailAddress));
 
-
             try
             {
                 _DatabaseManipulation.Open();
@@ -48,6 +47,7 @@ namespace University_Registration_System_Current_.Data_Access_Layer
             {
                 Console.WriteLine("EException.Message: {0}", ex.Message);
             }
+
             return answer;
         }
 
