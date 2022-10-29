@@ -44,10 +44,8 @@ namespace UniversitySystemRegistration.Repository
             parameters.Add(new SqlParameter("@nid", user.NationalIdentityNumber));
             try
             {
-                databaseManipulation.OpenDbConnection();
                 var result = databaseManipulation.GetInfo(infoCheckQuery, parameters);
                 answer = result.Rows.Count > 0 ? true : false;
-                databaseManipulation.CloseDbConnection();
             }
             catch (Exception error)
             {

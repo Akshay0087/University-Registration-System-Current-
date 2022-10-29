@@ -150,26 +150,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="Repository\UserDAL.cs" />
-    <Compile Include="Services\IPasswordHashing.cs" />
-    <Compile Include="Services\IStudentServices.cs" />
-    <Compile Include="Services\IUserServices.cs" />
-    <Compile Include="Services\PasswordHashing.cs" />
-    <Compile Include="Services\StudentServices.cs" />
-    <Compile Include="Services\UserServices.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\RequestInterfaceController.cs" />
-    <Compile Include="Repository\DatabaseManipulation.cs" />
-    <Compile Include="Repository\IDatabaseConnection.cs" />
-    <Compile Include="Repository\IUserDAL.cs" />
-    <Compile Include="Models\UserRoles.cs" />
-    <Compile Include="Models\Guardian.cs" />
-    <Compile Include="Models\GradeScore.cs" />
-    <Compile Include="Models\StatusScore.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Subject.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,6 +227,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RepositoryLibrary\RepositoryLibrary.csproj">
+      <Project>{098c1939-280f-4447-92a8-bc0549aa6c36}</Project>
+      <Name>RepositoryLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj">
+      <Project>{8ad0ad33-f130-4f60-941c-bbcc6d9b588c}</Project>
+      <Name>ServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

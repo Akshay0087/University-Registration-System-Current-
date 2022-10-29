@@ -1,6 +1,5 @@
 ﻿toastr.options.timeOut = 100000;
 
-
 function EmailValidation(element) {
 	var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	if (!emailRegex.test(element.value)) {
@@ -22,7 +21,8 @@ function PasswordValidation(element) {
 		element.value = "";
 	}
 }
-function NameValidation(element) { 
+
+function NameValidation(element) {
 	if (element.value.length < 2 || element.value.length > 50) {
 		var attributeName = element.getAttribute("name")
 		toastr.error("Incorrect " + attributeName + " length");
@@ -31,13 +31,13 @@ function NameValidation(element) {
 	}
 }
 
-function NationalIdentityNumberValidation() {
-	var minlength = "9";
-	var maxlength = "16";
-	var NIDRegexCharacter =/^[a-zA-Z0-9]*$/;
-	if (element.value.length < 9 || element.value.length > 20) {
+function NationalIdentityNumberValidation(element) {
+	var minLength = 9;
+	var maxLength = 16;
+	var NIDRegexCharacter = /^[a-zA-Z0-9]*$/;
+	if (element.value.length < minLength || element.value.length > maxLength) {
 		toastr.error("Incorrect NID length");
-		element.setCustomValidity("NID characters length requirement(" + minlength + "-" + maxlength + ")");
+		element.setCustomValidity("NID characters length requirement(" + minLength + "-" + maxLength + ")");
 		element.value = "";
 	}
 	if (!NIDRegexCharacter.test(element.value)) {
@@ -47,9 +47,9 @@ function NationalIdentityNumberValidation() {
 	}
 }
 
-function addressValidation(element) {
+function AddressValidation(element) {
 	if (element.value.length < 2 || element.value.length > 100) {
-		toastr.error("Incorrect Adress length");
+		toastr.error("Incorrect Address length");
 		element.setCustomValidity("Address character length requirement (2-100)");
 		element.value = "";
 	}
