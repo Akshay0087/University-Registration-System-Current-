@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using UniversitySystemRegistration.Business_Logic;
+using UniversitySystemRegistration.Services;
 
 namespace University_Registration_System_Current_.Controllers
 {
@@ -7,7 +7,6 @@ namespace University_Registration_System_Current_.Controllers
     {
 
         public readonly IUserServices userService;
-
         public RequestInterfaceController(IUserServices _userService)
         {
             userService = _userService;
@@ -17,9 +16,6 @@ namespace University_Registration_System_Current_.Controllers
         {
             return View();
         }
-
-
-
         [HttpGet]
         public JsonResult GetSessionRole()
         {

@@ -2,8 +2,8 @@
 {
     public class Guardian
     {
-        public int guardianId { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
+        public int GuardianId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

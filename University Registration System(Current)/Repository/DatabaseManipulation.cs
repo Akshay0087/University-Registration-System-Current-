@@ -1,61 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace UniversitySystemRegistration.Data_Access_Layer
+namespace UniversitySystemRegistration.Repository
 {
-
-    public interface IDatabaseManipulation
+    public class DatabaseConnection:IDatabaseConnection
     {
-        void Open();
-        void Close();
-        bool SetInfo(string query,List<SqlParameter> parameters);//insert
-        DataTable GetInfo(string query, List<SqlParameter> parameters);//select
-
-    }
-    public class DatabaseManipulation:IDatabaseManipulation
-    {
-        public DatabaseManipulation() { }
-
-        SqlConnection cnn = null;
-
-        public void Open()
-        {
-            try
-            {
-                string connetionString;
-                connetionString = "Data Source=L-PW02X091;Initial Catalog=UniversityRegistrationDB;Integrated Security=True";
-                cnn = new SqlConnection(connetionString);
-                cnn.Open();
-            }
-            catch
-            {
-                cnn = null;
-            }
-        }
-
-        public void Close()
-        {
-            try
-            {
-                cnn.Close();
-            }
-            catch
-            {
-            }
-        }
-
+        public DatabaseConnection() { }
+        SqlConnection DbConnection = null;
         public DataTable GetInfo(string query, List<SqlParameter> parameters)//select
         {
             DataTable tableData = new DataTable();
-            if (cnn != null)
+            if (DbConnection != null)
             {
-                using (cnn)
+                using (DbConnection)
                 {
                     try
                     {
-                        SqlCommand cmd = new SqlCommand(query, cnn);
+                        OpenDbConnection();
+                        SqlCommand cmd = new SqlCommand(query, DbConnection);
                         // create data adapter
                         cmd.CommandType = CommandType.Text;
                         if (parameters != null)
@@ -70,19 +35,18 @@ namespace UniversitySystemRegistration.Data_Access_Layer
                             da.Fill(tableData);
                         }
 
-                       
-                        Close();
+                        CloseDbConnection();
                     }
 
-                    catch (Exception ex)
+                    catch (Exception error)
                     {
-                        Console.WriteLine("EException.Message: {0}", ex.Message);
+                        throw error;
                     }
                 }
             }
             else
             {
-                Console.WriteLine("Failed: DbConnection is null.");
+               //
             }
 
             return tableData;
@@ -91,11 +55,11 @@ namespace UniversitySystemRegistration.Data_Access_Layer
 
         public bool SetInfo(string query, List<SqlParameter> parameters)//insert
         {
-            Open();
+            OpenDbConnection();
 
             var result=false;
 
-            SqlCommand sqlcom = new SqlCommand(query, cnn);
+            SqlCommand sqlcom = new SqlCommand(query, DbConnection);
             sqlcom.CommandType = CommandType.Text;
             if (parameters != null)
             {
@@ -109,15 +73,43 @@ namespace UniversitySystemRegistration.Data_Access_Layer
                 result =rowAffected>0?  true : false;
 
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
-                Console.WriteLine("EException.Message: {0}", ex.Message);
+                throw error;
             }
-            Close();
+            CloseDbConnection();
 
             return result;
         }
 
-        
+        public void OpenDbConnection()
+        {
+            try
+            {
+                string strcon = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+                DbConnection = new SqlConnection(strcon);
+                DbConnection.Open();
+           
+            }
+            catch (Exception error)
+            {
+                DbConnection = null;
+                throw error;
+            }
+        }
+
+        public void CloseDbConnection()
+        {
+            try
+            {
+                DbConnection.Close();
+                DbConnection.Dispose();
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+
     }
 }

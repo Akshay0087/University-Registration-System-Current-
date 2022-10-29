@@ -4,10 +4,10 @@ namespace UniversitySystemRegistration.Models
 {
     public class Student
     {
-        public Guardian guardianStudent=null;
-        public List<Subject> subjects;
-        public int TotalScore;
-        public int studentId;
-        public int userId;
+        public Guardian StudentGuardienInfo=null;
+        public List<Subject> Subjects;
+        public int TotalScoreOfSubjects;
+        public int StudentId;
+        public int UserId;
     }
 }

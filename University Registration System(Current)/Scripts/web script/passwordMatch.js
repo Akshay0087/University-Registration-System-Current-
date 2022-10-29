@@ -1,5 +1,5 @@
 ﻿
-function passwordMatch(password1, password2) {
+function PasswordMatch(password1, password2) {
 
     toastr.options.timeOut = 100000;
 

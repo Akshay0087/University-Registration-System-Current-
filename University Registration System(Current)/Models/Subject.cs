@@ -2,8 +2,8 @@
 {
     public class Subject
     {
-        public string subjectName { get; set; }
-        public int subjectId { get;private set; }
-        public char gradeSubject { get; set; } //A,B,C
+        public string SubjectName { get; set; }
+        public int SubjectId { get;private set; }
+        public char SubjectGrade { get; set; } 
     }
 }

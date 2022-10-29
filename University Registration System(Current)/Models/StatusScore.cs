@@ -1,6 +1,6 @@
 ﻿namespace UniversitySystemRegistration.Models
 {
-    public enum StatusScore
+    public enum SelectionThreshold
     {
         Accepted=11
     }

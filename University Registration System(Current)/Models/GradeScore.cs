@@ -1,6 +1,6 @@
 ﻿namespace UniversitySystemRegistration.Models
 {
-    public enum score
+    public enum GradeScore
     {
         A=10,
         B=8,

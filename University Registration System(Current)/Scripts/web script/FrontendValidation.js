@@ -1,56 +1,56 @@
-﻿function validation(id) {
+﻿toastr.options.timeOut = 100000;
 
+
+function EmailValidation(element) {
 	var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	var nidRegex = /[^ A - Za - z0 - 9]+/;
+	if (!emailRegex.test(element.value)) {
+		toastr.error("Invalid Email Format");
+		element.setCustomValidity("Invalid Email Format");
+		element.value = "";
+	}
+	if (element.value.length < 8 || element.value.length > 50) {
+		toastr.error("Incorrect Email length");
+		element.setCustomValidity("Address character requirement(8-50)");
+		element.value = "";
+	}
+}
 
-	toastr.options.timeOut = 100000;
+function PasswordValidation(element) {
+	if (element.value.length < 8 && element.value.length > 25) {
+		toastr.error("Incorrect password length");
+		element.setCustomValidity("Password character length requirement(8-25)");
+		element.value = "";
+	}
+}
+function NameValidation(element) { 
+	if (element.value.length < 2 || element.value.length > 50) {
+		var attributeName = element.getAttribute("name")
+		toastr.error("Incorrect " + attributeName + " length");
+		element.setCustomValidity(attributeName + " character length requirement(2-50)");
+		element.value = "";
+	}
+}
 
-	switch (id) {
-		case "email":
-			if (!emailRegex.test(document.getElementById(id).value)) {
-				toastr.error("Invalid Email Format");
-				document.getElementById(id).setCustomValidity("Invalid Email Format");
-				document.getElementById(id).value = "";
-			}
-			break;
-		case "password1":
+function NationalIdentityNumberValidation() {
+	var minlength = "9";
+	var maxlength = "16";
+	var NIDRegexCharacter =/^[a-zA-Z0-9]*$/;
+	if (element.value.length < 9 || element.value.length > 20) {
+		toastr.error("Incorrect NID length");
+		element.setCustomValidity("NID characters length requirement(" + minlength + "-" + maxlength + ")");
+		element.value = "";
+	}
+	if (!NIDRegexCharacter.test(element.value)) {
+		toastr.error("Invalid NID Format");
+		element.setCustomValidity("Invalid Email Format (Only letters and numbers accepted)");
+		element.value = "";
+	}
+}
 
-			if (document.getElementById(id).value.length < 8) {
-				toastr.error("Incorrect password");
-				document.getElementById(id).setCustomValidity("Password character requirement should be greater than 8");
-				document.getElementById(id).value = "";
-			}
-			break;
-		case "fname":
-			if (document.getElementById(id).value.length < 2 || document.getElementById(id).value.length > 20) {
-				toastr.error("Incorrect firstname");
-				document.getElementById(id).setCustomValidity("Firstname character requirement(2-20)");
-				document.getElementById(id).value = "";
-			}
-			break;
-		case "lname":
-			if (document.getElementById(id).value.length < 2 || document.getElementById(id).value.length > 20) {
-				toastr.error("Incorrect Lastname");
-				document.getElementById(id).setCustomValidity("Lastname character requirement(2-20)");
-				document.getElementById(id).value = "";
-			}
-			break;
-		case "NID":
-			if (!(document.getElementById(id).value.length == 14) || !nidRegex.test(document.getElementById(id).value) ){
-				toastr.error("Incorrect NID");
-				document.getElementById(id).setCustomValidity("NID should be of 14 characters(Numbers and letters only)NID should be of 14 characters(Numbers and letters only)");
-				document.getElementById(id).value = "";
-			}
-			break;
-		case "address":
-			if (!document.getElementById(id).value.length > 2 || !document.getElementById(id).value.length<120) {
-				toastr.error("Incorrect Adress");
-				document.getElementById(id).setCustomValidity("Address character requirement greater than 2");
-				document.getElementById(id).value = "";
-			}
-			break;
-
-		default:
-			break;
+function addressValidation(element) {
+	if (element.value.length < 2 || element.value.length > 100) {
+		toastr.error("Incorrect Adress length");
+		element.setCustomValidity("Address character length requirement (2-100)");
+		element.value = "";
 	}
 }

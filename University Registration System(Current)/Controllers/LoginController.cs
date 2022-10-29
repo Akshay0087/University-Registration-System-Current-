@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using UniversitySystemRegistration.Business_Logic;
 using UniversitySystemRegistration.Models;
+using UniversitySystemRegistration.Services;
 
 namespace University_Registration_System_Current_.Controllers
 {
@@ -18,16 +18,6 @@ namespace University_Registration_System_Current_.Controllers
         { 
             return View();
         }
-
-        /*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(Student Student)
-        {
-            
-            return View();
-        }*/
-
         
         [HttpPost]
         public JsonResult Authenticate(User userData)
@@ -38,7 +28,7 @@ namespace University_Registration_System_Current_.Controllers
             {
                User authenticatedUser= userService.GetUserData(userData);
                this.Session["CurrentUser"] = authenticatedUser;
-               this.Session["CurrentRole"] = authenticatedUser.role;
+               this.Session["CurrentRole"] = authenticatedUser.UserRole;
             }
 
             return Json(new 

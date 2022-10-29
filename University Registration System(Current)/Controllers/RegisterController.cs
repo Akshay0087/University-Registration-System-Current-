@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
-using UniversitySystemRegistration.Business_Logic;
+using UniversitySystemRegistration;
 using UniversitySystemRegistration.Models;
+using UniversitySystemRegistration.Services;
 
 namespace University_Registration_System_Current_.Controllers
 {
@@ -25,7 +26,7 @@ namespace University_Registration_System_Current_.Controllers
         {
             var _msg= true;
             var flag = false;
-            userData.role = Role.Student;
+            userData.UserRole = UserRoles.Student;
             
             if (!userService.UserCheck(userData))
             {
