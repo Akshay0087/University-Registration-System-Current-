@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using UniversitySystemRegistration.Models;
+﻿using UniversitySystemRegistration.Models;
 
 namespace UniversitySystemRegistration.Repository
 {
@@ -9,5 +6,6 @@ namespace UniversitySystemRegistration.Repository
     {
         bool LoginCheck(User userData);
         bool UserInfoCheck(User userData);
+
     }
 }

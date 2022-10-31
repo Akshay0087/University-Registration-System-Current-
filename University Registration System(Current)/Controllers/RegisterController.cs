@@ -3,7 +3,7 @@ using UniversitySystemRegistration;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Services;
 
-namespace University_Registration_System_Current_.Controllers
+namespace UniversitySystemRegistration.Controllers
 {
     public class RegisterController : Controller
     {

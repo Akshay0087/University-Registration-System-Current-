@@ -9,17 +9,19 @@ namespace UniversitySystemRegistration.Repository
     public class DatabaseConnection:IDatabaseConnection
     {
         public DatabaseConnection() { }
-        SqlConnection DbConnection = null;
+        SqlConnection DbConnection=null;
         public DataTable GetInfo(string query, List<SqlParameter> parameters)//select
         {
             DataTable tableData = new DataTable();
+            OpenDbConnection();
             if (DbConnection != null)
             {
                 using (DbConnection)
                 {
                     try
                     {
-                        OpenDbConnection();
+                      
+                        
                         SqlCommand cmd = new SqlCommand(query, DbConnection);
                         // create data adapter
                         cmd.CommandType = CommandType.Text;
@@ -55,6 +57,7 @@ namespace UniversitySystemRegistration.Repository
 
         public bool SetInfo(string query, List<SqlParameter> parameters)//insert
         {
+           
             OpenDbConnection();
 
             var result=false;
@@ -82,11 +85,14 @@ namespace UniversitySystemRegistration.Repository
             return result;
         }
 
+      
+        
+
         public void OpenDbConnection()
         {
             try
             {
-                string strcon = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+                string strcon = @ConfigurationManager.AppSettings["ConnectionString"]; ;
                 DbConnection = new SqlConnection(strcon);
                 DbConnection.Open();
            

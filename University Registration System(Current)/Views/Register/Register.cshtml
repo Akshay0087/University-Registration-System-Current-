@@ -13,58 +13,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
-    <script src="~/Scripts/web script/RegisterJS.js" type="text/javascript"></script>
-    <script src="~/Scripts/web script/FrontendValidation.js" type="text/javascript"></script>
-    <script src="~/Scripts/web script/DateValidator.js" type="text/javascript"></script>
-    <script src="~/Scripts/web script/PasswordMatch.js" type="text/javascript"></script>
-    <script src="~/Scripts/web script/PhoneCountryDisplay.js" type="text/javascript"></script>
+    <script src="~/Scripts/web script/RegisterScript/RegisterJS.js" type="text/javascript"></script>
+    <script src="~/Scripts/web script/RegisterScript/FrontendValidation.js" type="text/javascript"></script>
+    <script src="~/Scripts/web script/RegisterScript/DateValidator.js" type="text/javascript"></script>
+    <script src="~/Scripts/web script/RegisterScript/PasswordMatch.js" type="text/javascript"></script>
+    <script src="~/Scripts/web script/RegisterScript/PhoneCountryDisplay.js" type="text/javascript"></script>
 </head>
-<body>
-
-    
-    <div id="form_info">
-        <h1 id="title_university">Welcome to XYZ university</h1>
-        <form>
-            <h1>Register</h1><br>
-
-            <label for="emailLabel">EMAIL ADDRESS</label>
-            <input type="email" id="email" onchange="EmailValidation(this);" required>
-
-            <label for="password">PASSWORD</label>
-            <input type="password" id="password1" onchange="PasswordMatch(this,password2);" required>
-
-            <label for="confirm_p">CONFIRM PASSWORD</label>
-            <input type="password" id="password2" onchange="PasswordMatch(password1,this);" required>
-
-            <label for="fname">FIRST NAME</label>
-            <input type="text" name="firstname" id="fname" onchange="NameValidation(this);" required>
-
-            <label for="lname">LAST NAME</label>
-            <input type="text" name="lastname" id="lname" onchange="NameValidation(this);" required>
-
-            <label for="lname">NATIONAL IDENTIFICATION NUMBER</label>
-            <input type="text" id="NID" onchange="NationalIdentityNumberValidation(this);" required>
-
-            <label for="dateLabel">DATE OF BIRTH</label>
-            <input type="date" id="dateB" onchange="RegistrationDateValidation(this);" required>
-
-            <label for="addressLabel">ADDRESS</label>
-            <input type="text" id="address" onchange="AddressValidation(this);" required>
-
-            <label for="phoneNumber">PHONE NUMBER</label>
-            <input id="phone" type="tel" required>
-
-            <button onclick=register_button() id="btnMain">Register Now</button><br>
+        
+    <body>
 
 
+        <div id="form_info">
+            <h1 id="title_university">Welcome to XYZ university</h1>
+            <form>
+                <h1>Register</h1><br>
 
-        </form>
-        <div id="register_div">
-            <button onclick="window.location.href = '/Login/Login';" id="btnMinor">Existing User? LOGIN</button>
-        </div>
+                    <label for="emailLabel">EMAIL ADDRESS</label>
+                    <input type="email" id="email" onchange="EmailValidation(this);" required>
 
-    </div>
+                        <label for="password">PASSWORD</label>
+                        <input type="password" id="password1" onchange="PasswordMatch(this, password2),PasswordValidation(this);" required>
 
-</body>
+                            <label for="confirm_p">CONFIRM PASSWORD</label>
+                            <input type="password" id="password2" onchange="PasswordMatch(password1,this);" required>
 
-</html>
+                                <label for="fname">FIRST NAME</label>
+                                <input type="text" name="firstname" id="fname" onchange="NameValidation(this);" required>
+
+                                    <label for="lname">LAST NAME</label>
+                                    <input type="text" name="lastname" id="lname" onchange="NameValidation(this);" required>
+
+                                        <label for="lname">NATIONAL IDENTIFICATION NUMBER</label>
+                                        <input type="text" id="NID" onchange="NationalIdentityNumberValidation(this);" required>
+
+                                            <label for="dateLabel">DATE OF BIRTH</label>
+                                            <input type="date" id="dateB" onchange="RegistrationDateValidation(this);" required>
+
+                                                <label for="addressLabel">ADDRESS</label>
+                                                <input type="text" id="address" onchange="AddressValidation(this);" required>
+
+                                                    <label for="phoneNumber">PHONE NUMBER</label>
+                                                    <input id="phone" type="tel" required>
+
+                                                        <button onclick=register_button() id="btnMain">Register Now</button><br>
+
+
+
+                                                    </form>
+                                                    <div id="register_div">
+                                                        <button onclick="window.location.href = '/Login/Login';" id="btnMinor">Existing User? LOGIN</button>
+                                                    </div>
+
+                                                </div>
+
+                                            </body>
+
+                                        </html>

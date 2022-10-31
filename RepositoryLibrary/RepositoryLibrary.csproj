@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccessLayer\DatabaseManipulation.cs" />
+    <Compile Include="DataAccessLayer\DatabaseConnection.cs" />
+    <Compile Include="Models\DbOperation.cs" />
     <Compile Include="DataAccessLayer\IDatabaseConnection.cs" />
+    <Compile Include="DataAccessLayer\IstudentDAL.cs" />
     <Compile Include="DataAccessLayer\IUserDAL.cs" />
+    <Compile Include="DataAccessLayer\StudentDAL.cs" />
     <Compile Include="Models\GradeScore.cs" />
     <Compile Include="Models\Guardian.cs" />
     <Compile Include="Models\StatusScore.cs" />
@@ -54,6 +58,11 @@
     <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccessLayer\UserDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next">
+      <Version>4.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

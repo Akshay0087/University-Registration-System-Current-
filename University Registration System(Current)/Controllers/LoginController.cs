@@ -2,7 +2,7 @@
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Services;
 
-namespace University_Registration_System_Current_.Controllers
+namespace UniversitySystemRegistration.Controllers
 {
     public class LoginController : Controller
     {
@@ -11,31 +11,33 @@ namespace University_Registration_System_Current_.Controllers
 
         public LoginController(IUserServices _userService)
         {
-            userService= _userService;
+            userService = _userService;
         }
-        
+
         public ActionResult Login()
-        { 
+        {
             return View();
         }
-        
+
         [HttpPost]
         public JsonResult Authenticate(User userData)
         {
-            var flag=userService.UserLogin(userData);
+            var flag = userService.UserLogin(userData);
 
             if (flag)
             {
-               User authenticatedUser= userService.GetUserData(userData);
-               this.Session["CurrentUser"] = authenticatedUser;
-               this.Session["CurrentRole"] = authenticatedUser.UserRole;
+                User authenticatedUser = userService.GetUserData(userData);
+
+                this.Session["CurrentUser"] = authenticatedUser;
+                this.Session["CurrentRole"] = authenticatedUser.UserRole;
+
             }
 
-            return Json(new 
-            { 
-              result = flag, 
-              url = Url.Action("Main", "RequestInterface"),
-              
+            return Json(new
+            {
+                result = flag,
+                url = Url.Action("Main", "RequestInterface"),
+
             });
         }
 
@@ -50,7 +52,6 @@ namespace University_Registration_System_Current_.Controllers
 
             });
         }
-
 
     }
 }

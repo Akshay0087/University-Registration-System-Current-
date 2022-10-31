@@ -152,7 +152,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\RequestInterfaceController.cs" />
+    <Compile Include="Controllers\StudentInterfaceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,15 +186,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\web script\DateValidator.js" />
+    <Content Include="Scripts\web script\RegisterScript\DateValidator.js" />
     <Content Include="css\FormStylesheet.css" />
-    <Content Include="Scripts\web script\FrontendValidation.js" />
-    <Content Include="Scripts\web script\GetSessionRole.js" />
-    <Content Include="Scripts\web script\LoginJS.js" />
-    <Content Include="Scripts\web script\PasswordMatch.js" />
-    <Content Include="Scripts\web script\PhoneCountryDisplay.js" />
-    <Content Include="Scripts\web script\RegisterJS.js" />
-    <None Include="Views\RequestInterface\NavBar.cshtml" />
+    <Content Include="Scripts\web script\RegisterScript\FrontendValidation.js" />
+    <Content Include="Scripts\web script\LoginScript\LoginJS.js" />
+    <Content Include="Scripts\web script\RegisterScript\PasswordMatch.js" />
+    <Content Include="Scripts\web script\RegisterScript\PhoneCountryDisplay.js" />
+    <Content Include="Scripts\web script\RegisterScript\RegisterJS.js" />
+    <Content Include="Scripts\web script\StudentScript\StudentFormAddRemoveField.js" />
+    <Content Include="Scripts\web script\StudentScript\StudentGetSubject.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -208,9 +208,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
-    <Content Include="Views\RequestInterface\Main.cshtml" />
-    <Content Include="Views\RequestInterface\StudentForm.cshtml" />
-    <Content Include="Views\RequestInterface\AdminPanel.cshtml" />
+    <Content Include="Views\StudentInterface\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

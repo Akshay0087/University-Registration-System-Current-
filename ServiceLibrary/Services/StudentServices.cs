@@ -4,8 +4,9 @@ using UniversitySystemRegistration.Models;
 
 namespace UniversitySystemRegistration.Services
 {
-    public class StudentServices: IStudentServices
+    public class StudentServices : IStudentServices
     {
+
         public int SubjectTotalScoreCalculation(Student student)
         {
             int totalScore = 0;
@@ -22,8 +23,9 @@ namespace UniversitySystemRegistration.Services
                 gradePoints.TryGetValue(scoreChar, out dicVal);
                 totalScore += dicVal;
             }
-            student.TotalScoreOfSubjects= totalScore;
+            student.TotalScoreOfSubjects = totalScore;
             return totalScore;
         }
+
     }
 }

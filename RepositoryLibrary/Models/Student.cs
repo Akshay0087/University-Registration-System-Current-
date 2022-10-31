@@ -8,6 +8,6 @@ namespace UniversitySystemRegistration.Models
         public List<Subject> Subjects;
         public int TotalScoreOfSubjects;
         public int StudentId;
-        public int UserId;
+        public char StudentStatus;
     }
 }

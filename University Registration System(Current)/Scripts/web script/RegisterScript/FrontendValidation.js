@@ -14,13 +14,7 @@ function EmailValidation(element) {
 	}
 }
 
-function PasswordValidation(element) {
-	if (element.value.length < 8 && element.value.length > 25) {
-		toastr.error("Incorrect password length");
-		element.setCustomValidity("Password character length requirement(8-25)");
-		element.value = "";
-	}
-}
+
 
 function NameValidation(element) {
 	if (element.value.length < 2 || element.value.length > 50) {

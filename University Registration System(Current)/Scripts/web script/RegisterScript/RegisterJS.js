@@ -34,14 +34,14 @@ function register_button() {
 	} else {
 
 		var authObj = {
-			emailAddress: emailAddress,
-			passwordHash: password,
-			firstname: firstname,
-			lastname: lastname,
-			address: address,
-			phoneNum: phone,
-			dob: DOB,
-			NID: NID
+			EmailAddress: emailAddress,
+			PasswordHash: password,
+			Firstname: firstname,
+			Lastname: lastname,
+			ResidentialAddress: address,
+			PhoneNumber: phone,
+			DateOfBirth: DOB,
+			NationalIdentityNumber: NID
 		};
 
 		sendData(authObj).then((response) => {

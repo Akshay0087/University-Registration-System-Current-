@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BCrypt.Net;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using UniversitySystemRegistration.Models;
@@ -12,19 +13,22 @@ namespace UniversitySystemRegistration.Repository
         {
             this.databaseManipulation = DatabaseManipulation;
         }
-        private const string loginCheckQuery = "SELECT PasswordHash FROM Users where EmailAddress=@emailAddress";
-        private const string infoCheckQuery = "SELECT UserId FROM Users where EmailAddress=@emailAddress OR Phone=@phoneNum OR NID=@nid";
+        private
+        const string loginCheckQuery = "SELECT PasswordHash FROM Users where EmailAddress=@emailAddress";
+        private
+        const string infoCheckQuery = "SELECT u.UserId FROM Users u inner join UsersInfo ui on u.UserId=ui.UserId where u.EmailAddress=@emailAddress OR ui.Phone=@phoneNum OR ui.NID=@nid";
 
         public bool LoginCheck(User userData)
         {
-            bool answer = false;// get password of user from email from DAL
+            bool answer = false; // get password of user from email from DAL
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@emailAddress", userData.EmailAddress));
             try
             {
                 var result = databaseManipulation.GetInfo(loginCheckQuery, parameters);
                 string dbpassword = (result.Rows[0].ItemArray[0]).ToString();
-                answer = dbpassword == userData.PasswordHash ? true : false;
+                answer = dbpassword.Equals(userData.PasswordHash) ? true : false;
+                answer = BCrypt.Net.BCrypt.Verify(userData.PasswordHash,dbpassword);
             }
             catch (Exception error)
             {
@@ -32,7 +36,6 @@ namespace UniversitySystemRegistration.Repository
             }
             return answer;
         }
-
 
         public bool UserInfoCheck(User user)
         {
