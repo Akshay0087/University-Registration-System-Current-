@@ -1,12 +1,19 @@
-﻿using System;
+﻿using RepositoryLibrary.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using UniversitySystemRegistration.Models;
+using UniversitySystemRegistration.Repository;
 
 namespace UniversitySystemRegistration.Services
 {
     public class StudentServices : IStudentServices
     {
-
+        private readonly IStudentDAL _studentDAL;
+        public StudentServices(IStudentDAL studentDAL)
+        {
+            
+            _studentDAL = studentDAL;
+        }
         public int SubjectTotalScoreCalculation(Student student)
         {
             int totalScore = 0;
@@ -27,5 +34,10 @@ namespace UniversitySystemRegistration.Services
             return totalScore;
         }
 
+
+        public List<string> getSubjectListItem()
+        {
+            return _studentDAL.GetSubjectList();
+        }
     }
 }

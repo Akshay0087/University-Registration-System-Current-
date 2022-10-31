@@ -45,7 +45,6 @@
     <Compile Include="Services\IPasswordHashing.cs" />
     <Compile Include="Services\IStudentServices.cs" />
     <Compile Include="Services\IUserServices.cs" />
-    <Compile Include="Services\PasswordHashing.cs" />
     <Compile Include="Services\StudentServices.cs" />
     <Compile Include="Services\UserServices.cs" />
   </ItemGroup>

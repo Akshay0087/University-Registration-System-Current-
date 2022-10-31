@@ -6,6 +6,8 @@ namespace UniversitySystemRegistration.Repository
     {
         bool LoginCheck(User userData);
         bool UserInfoCheck(User userData);
+        bool insertUserDataInDb(User user);
 
+        User GetUserDataInDb(User user);
     }
 }

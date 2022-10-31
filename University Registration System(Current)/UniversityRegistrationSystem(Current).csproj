@@ -193,7 +193,6 @@
     <Content Include="Scripts\web script\RegisterScript\PasswordMatch.js" />
     <Content Include="Scripts\web script\RegisterScript\PhoneCountryDisplay.js" />
     <Content Include="Scripts\web script\RegisterScript\RegisterJS.js" />
-    <Content Include="Scripts\web script\StudentScript\StudentFormAddRemoveField.js" />
     <Content Include="Scripts\web script\StudentScript\StudentGetSubject.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -209,6 +208,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\StudentInterface\Main.cshtml" />
+    <Content Include="Views\StudentInterface\AddRemoveField.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

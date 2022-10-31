@@ -9,6 +9,7 @@ namespace UniversitySystemRegistration.Models
         public Student student = null;
 
         [Required]
+        [RegularExpression("/^[a-zA-Z0-9]*$/")]
         [MaxLength(16), MinLength(9)]
         public string NationalIdentityNumber
         {

@@ -14,7 +14,6 @@ namespace University_Registration_System_Current_
 			var container = new UnityContainer();
             
             container.RegisterType<IUserDAL,UserDAL>();
-            container.RegisterType<IPasswordHashing, PasswordHashing>();
             container.RegisterType<IStudentServices, StudentServices>();
             container.RegisterType<IUserServices, UserServices>();
             container.RegisterType<IDatabaseConnection, DatabaseConnection>();

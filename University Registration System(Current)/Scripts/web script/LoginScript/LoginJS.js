@@ -40,7 +40,7 @@ function login_button() {
 }
 
 function redirect() {
-	window.location.href = "/RequestInterface/Main";
+	window.location.href = "/StudentInterface/Main";
 }
 
 

@@ -6,7 +6,7 @@ using UniversitySystemRegistration.Models;
 
 namespace RepositoryLibrary.DataAccessLayer
 {
-    interface IStudentDAL
+    public interface IStudentDAL
     {
         bool SetUserID(User user);
 
@@ -19,6 +19,8 @@ namespace RepositoryLibrary.DataAccessLayer
         bool SetUpdateStudentSubject(User user, DbOperation dbOperation);
 
         bool SetUpdateStudentGuardian(User user, DbOperation dbOperation);
+
+        List<String> GetSubjectList();
 
     }
 }
