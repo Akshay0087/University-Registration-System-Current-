@@ -1,5 +1,4 @@
-﻿using BCrypt.Net;
-using RepositoryLibrary.DataAccessLayer;
+﻿using RepositoryLibrary.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,13 +12,9 @@ namespace UniversitySystemRegistration.Repository
         private readonly IDatabaseConnection databaseManipulation;
         public UserDAL(IDatabaseConnection DatabaseManipulation)
         {
-           
             this.databaseManipulation = DatabaseManipulation;
         }
-        private
-        const string loginCheckQuery = "SELECT PasswordHash FROM Users where EmailAddress=@emailAddress";
-        private
-        const string infoCheckQuery = "SELECT u.UserId FROM Users u inner join UsersInfo ui on u.UserId=ui.UserId where u.EmailAddress=@emailAddress OR ui.Phone=@phoneNum OR ui.NID=@nid";
+      
 
         public bool LoginCheck(User userData)
         {
@@ -28,7 +23,7 @@ namespace UniversitySystemRegistration.Repository
             parameters.Add(new SqlParameter("@emailAddress", userData.EmailAddress));
             try
             {
-                var result = databaseManipulation.GetInfo(loginCheckQuery, parameters);
+                var result = databaseManipulation.GetInfo(SqlQueries.loginCheckQuery, parameters);
                 string dbpassword = (result.Rows[0].ItemArray[0]).ToString();
                 answer = dbpassword.Equals(userData.PasswordHash) ? true : false;
                 answer = BCrypt.Net.BCrypt.Verify(userData.PasswordHash,dbpassword);
@@ -50,7 +45,7 @@ namespace UniversitySystemRegistration.Repository
             parameters.Add(new SqlParameter("@nid", user.NationalIdentityNumber));
             try
             {
-                var result = databaseManipulation.GetInfo(infoCheckQuery, parameters);
+                var result = databaseManipulation.GetInfo(SqlQueries.infoCheckQuery, parameters);
                 answer = result.Rows.Count > 0 ? true : false;
             }
             catch (Exception error)

@@ -42,15 +42,15 @@ namespace UniversitySystemRegistration.Controllers
         }
 
         [HttpPost]
-        public JsonResult logout()
+        public JsonResult Logout()
         {
             this.Session.Clear();
 
             return Json(new
             {
-                url = Url.Action("Login", "Login"),
+                result = true
 
-            });
+            }) ;
         }
 
     }

@@ -24,8 +24,8 @@ function login_button() {
 
 		sendData(authObj).then((response) => {
 			if (response.result) {
-				toastr.success("Login Success");
-				setTimeout(redirect, 3000);
+				toastr.success("Login Successful");
+				setTimeout(redirect, 2000);
 
 			} else {
 				toastr.error('Login Failed');

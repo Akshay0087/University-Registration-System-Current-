@@ -6,7 +6,7 @@ namespace UniversitySystemRegistration.Models
     public class User
     {
         public int UserId;
-        public Student student = null;
+        public Student student;
 
         [Required]
         [RegularExpression("/^[a-zA-Z0-9]*$/")]

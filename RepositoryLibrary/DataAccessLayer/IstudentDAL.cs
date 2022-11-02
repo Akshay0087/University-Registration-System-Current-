@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using UniversitySystemRegistration.Models;
 
 namespace RepositoryLibrary.DataAccessLayer
@@ -20,7 +18,7 @@ namespace RepositoryLibrary.DataAccessLayer
 
         bool SetUpdateStudentGuardian(User user, DbOperation dbOperation);
 
-        List<String> GetSubjectList();
+        List<String> StudentGradeList(string query);
 
     }
 }

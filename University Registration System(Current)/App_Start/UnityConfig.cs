@@ -1,3 +1,4 @@
+using RepositoryLibrary.DataAccessLayer;
 using System.Web.Mvc;
 using Unity;
 using Unity.Mvc5;
@@ -17,7 +18,7 @@ namespace University_Registration_System_Current_
             container.RegisterType<IStudentServices, StudentServices>();
             container.RegisterType<IUserServices, UserServices>();
             container.RegisterType<IDatabaseConnection, DatabaseConnection>();
-            container.RegisterType<IUserDAL, UserDAL>();
+            container.RegisterType<IStudentDAL, StudentDAL>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

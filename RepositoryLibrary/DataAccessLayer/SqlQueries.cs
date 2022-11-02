@@ -29,9 +29,15 @@
         public
         const string selectIdentity = "select @@IDENTITY";
         public
+        const string loginCheckQuery = "SELECT PasswordHash FROM Users where EmailAddress=@emailAddress";
+        public
+        const string infoCheckQuery = "SELECT u.UserId FROM Users u inner join UsersInfo ui on u.UserId=ui.UserId where u.EmailAddress=@emailAddress OR ui.Phone=@phoneNum OR ui.NID=@nid";
+        public
         const string insertIdInStudent = "INSERT INTO Student(GuardianId)values(@guardianId) where StudentId=@studentId";
         public
         const string getSubjectList = "SELECT SubjectName from Subject";
+        public
+        const string getGradeList = "SELECT Grade from GradeInfo";
 
         public const string insertIntoUser = "insert into Users (Emailaddress,Passwordhash,role)values" +
            "(@emailaddress,@passwordhash,@role)";

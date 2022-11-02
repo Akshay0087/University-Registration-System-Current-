@@ -175,7 +175,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\1.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="css\LoginRegistration.css" />
+    <Content Include="css\MainLayout.css" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -186,13 +186,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\web script\Common Function\Logout.js" />
     <Content Include="Scripts\web script\RegisterScript\DateValidator.js" />
-    <Content Include="css\FormStylesheet.css" />
-    <Content Include="Scripts\web script\RegisterScript\FrontendValidation.js" />
+    <Content Include="Scripts\web script\Common Function\FrontendValidation.js" />
     <Content Include="Scripts\web script\LoginScript\LoginJS.js" />
     <Content Include="Scripts\web script\RegisterScript\PasswordMatch.js" />
     <Content Include="Scripts\web script\RegisterScript\PhoneCountryDisplay.js" />
     <Content Include="Scripts\web script\RegisterScript\RegisterJS.js" />
+    <Content Include="Scripts\web script\StudentScript\CheckSubject.js" />
+    <Content Include="Scripts\web script\StudentScript\SaveStudentInfo.js" />
     <Content Include="Scripts\web script\StudentScript\StudentGetSubject.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -208,7 +210,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\StudentInterface\Main.cshtml" />
-    <Content Include="Views\StudentInterface\AddRemoveField.cshtml" />
+    <Content Include="Views\StudentInterface\DetailsScreen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

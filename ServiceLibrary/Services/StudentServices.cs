@@ -35,9 +35,9 @@ namespace UniversitySystemRegistration.Services
         }
 
 
-        public List<string> getSubjectListItem()
+        public List<string> GetSubjectAndGradeList(string query)
         {
-            return _studentDAL.GetSubjectList();
+            return _studentDAL.StudentGradeList(query);
         }
     }
 }

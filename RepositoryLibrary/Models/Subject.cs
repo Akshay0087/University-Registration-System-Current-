@@ -2,7 +2,7 @@
 {
     public class Subject
     {
-
+        public Subject() { }
         public Subject(string SubjectName, int SubjectId, char SubjectGrade)
         {
             this.SubjectName = SubjectName;
