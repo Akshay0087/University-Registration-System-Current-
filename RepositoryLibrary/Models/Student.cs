@@ -7,10 +7,10 @@ namespace UniversitySystemRegistration.Models
         public Student() { 
             Subjects = new List<Subject>(); 
         }
-        public Guardian StudentGuardianInfo;
-        public List<Subject> Subjects;
-        public int TotalScoreOfSubjects;
-        public int StudentId;
-        public char StudentStatus;
+        public Guardian StudentGuardianInfo { get; set; }
+        public List<Subject> Subjects { get; set; }
+        public int TotalScoreOfSubjects { get; set; }
+        public int StudentId { get; set; }
+        public char StudentStatus { get; set; }
     }
 }

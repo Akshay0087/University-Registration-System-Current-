@@ -1,4 +1,7 @@
-﻿namespace RepositoryLibrary.DataAccessLayer
+﻿using System.Runtime.Remoting.Messaging;
+using UniversitySystemRegistration.Models;
+
+namespace RepositoryLibrary.DataAccessLayer
 {
     public class SqlQueries
     {
@@ -13,10 +16,10 @@
         const string studentSubjectInfo = "SELECT su.SubjectName,su.SubjectId,sr.Grade FROM SubjectResult sr inner join Subject su on sr.SubjectId=su.SubjectId where sr.StudentId=@studentID";
 
         public
-        const string insertSubject = "INSERT INTO SubjectResult(SubjectId,StudentId,Grade)values(@subjectId,@studentId,@grade)";
+       const string selectSubjectId = "Select SubjectId from Subject where SubjectName=@subjectName";
 
         public
-        const string updateSubject = "UPDATE SubjectResult SET SubjectId=@subjectId,StudentId=@studentId,Grade=@grade where SubjectResultId=@subjectResultId";
+        const string insertSubject = "INSERT INTO SubjectResult(SubjectId,StudentId,Grade)values(@subjectId,@studentId,@grade)";
 
         public
         const string insertUserIdIntoStudent = "INSERT INTO Student(StudentId)values(@studentId)";
@@ -24,16 +27,19 @@
         public
         const string insertGuardian = "INSERT INTO Guardian(FirstName,LastName)values(@firstName,@lastName)";
 
-        public
-        const string updateGuardian = "UPDATE Guardian SET FirstName=@firstName,LastName=@LastName where Guardian=@guardian";
-        public
-        const string selectIdentity = "select @@IDENTITY";
+        public const string getGuardianId = "Select GuardianId from Guardian where FirstName=@firstName AND LastName=@lastName";
+
         public
         const string loginCheckQuery = "SELECT PasswordHash FROM Users where EmailAddress=@emailAddress";
         public
         const string infoCheckQuery = "SELECT u.UserId FROM Users u inner join UsersInfo ui on u.UserId=ui.UserId where u.EmailAddress=@emailAddress OR ui.Phone=@phoneNum OR ui.NID=@nid";
         public
-        const string insertIdInStudent = "INSERT INTO Student(GuardianId)values(@guardianId) where StudentId=@studentId";
+        const string insertIdInStudent = "Update Student set GuardianId=@guardianId where StudentId=@studentId";
+
+        public const string getGuardianIdFromStudentId="SELECT GuardianId from Student where StudentId = @studentId";
+
+        public const string getStudentSubjects = "Select Grade,SubjectId,SubjectName from SubjectResult sr inner join Subject s on sr.SubjectId=s.SubjectId";
+
         public
         const string getSubjectList = "SELECT SubjectName from Subject";
         public

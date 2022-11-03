@@ -1,7 +1,10 @@
-﻿using System;
+﻿using RepositoryLibrary.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Repository;
 
@@ -57,55 +60,78 @@ namespace RepositoryLibrary.DataAccessLayer
             return user;
         }
 
-        public bool SetUpdateStudentSubject(User user, DbOperation dbOperation)
+        public bool SetStudentSubject(User user)
         {
             var result = false;
-            foreach (var subject in user.student.Subjects)
+            for(var i=0; i < user.student.Subjects.Count; i++) {
+                if (!(user.student.Subjects[i].SubjectName==null)) {
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    parameters.Add(new SqlParameter("@subjectName", user.student.Subjects[i].SubjectName));
+                    var dataTable = databaseManipulation.GetInfo(SqlQueries.selectSubjectId, parameters);
+                    user.student.Subjects[i].SubjectId = Convert.ToInt32(dataTable.Rows[0]["SubjectId"]);
+                }
+                
+                
+            }
+            for (var j = 0; j < user.student.Subjects.Count; j++)
             {
-                List<SqlParameter> parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter("@subjectId", subject.SubjectId));
-                parameters.Add(new SqlParameter("@studentId", user.student.StudentId));
-                parameters.Add(new SqlParameter("@grade", subject.SubjectGrade));
-                if (dbOperation.Equals(DbOperation.update))
+
+                if (!(user.student.Subjects[j].SubjectName == null))
                 {
-                    parameters.Add(new SqlParameter("@subjectResultId", subject.SubjectGrade));
-                    result = databaseManipulation.SetInfo(SqlQueries.updateSubject, parameters);
-                }
-                else
-                {
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+                    parameters.Add(new SqlParameter("@subjectId", user.student.Subjects[j].SubjectId));
+                    parameters.Add(new SqlParameter("@studentId", user.student.StudentId));
+                    parameters.Add(new SqlParameter("@grade", user.student.Subjects[j].SubjectGrade));
                     result = databaseManipulation.SetInfo(SqlQueries.insertSubject, parameters);
+                    
                 }
+
             }
             return result;
         }
 
-        public bool SetUpdateStudentGuardian(User user, DbOperation dbOperation)
+        public bool SetStudentGuardian(User user)
         {
             var result = false;
 
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@firstName", user.student.StudentGuardianInfo.FirstName));
             parameters.Add(new SqlParameter("@lastName", user.student.StudentGuardianInfo.LastName));
-            if (dbOperation.Equals(DbOperation.update))
+
+            var tuple = IsGuardianExist(parameters);
+            List<SqlParameter> parametersSecond = new List<SqlParameter>();
+            if (tuple.Item1)
             {
-                parameters.Add(new SqlParameter("@guardianId", user.student.StudentGuardianInfo.GuardianId));
-                result = databaseManipulation.SetInfo(SqlQueries.updateGuardian, parameters);
+                user.student.StudentGuardianInfo.GuardianId = tuple.Item2;
             }
             else
             {
-                result = databaseManipulation.SetInfo(SqlQueries.insertGuardian, parameters);
-                var dataTable = databaseManipulation.GetInfo(SqlQueries.selectIdentity, null);
-                if (result)
-                {
-                    int identity = Convert.ToInt32(dataTable.Rows[0].ItemArray[0]);
-                    List<SqlParameter> parametersSecond = new List<SqlParameter>();
-                    parameters.Add(new SqlParameter("@guardianId", user.student.StudentGuardianInfo.GuardianId));
-                    parameters.Add(new SqlParameter("@studentId", user.student.StudentId));
-                    result = databaseManipulation.SetInfo(SqlQueries.insertIdInStudent, parameters);
-                }
+                var resultSet = databaseManipulation.GetInfo(SqlQueries.insertGuardian, parameters);
+                var dataTableResult = databaseManipulation.GetInfo(SqlQueries.getGuardianId,parameters);
+                user.student.StudentGuardianInfo.GuardianId = Convert.ToInt32(dataTableResult.Rows[0]["GuardianId"]);
             }
+            parametersSecond.Add(new SqlParameter("@guardianId", user.student.StudentGuardianInfo.GuardianId));
+            parametersSecond.Add(new SqlParameter("@studentId", user.student.StudentId));
+            result = databaseManipulation.SetInfo(SqlQueries.insertIdInStudent, parametersSecond);
+
 
             return result;
+        }
+
+        public Tuple<bool, int> IsGuardianExist(List<SqlParameter> parameter)
+        {
+            bool status = false;
+            int guardianId=0;
+            var dataTable = databaseManipulation.GetInfo(SqlQueries.getGuardianId, parameter);
+            if (dataTable.Rows.Count > 0)
+            {
+                status = true;
+                guardianId = Convert.ToInt32(dataTable.Rows[0]["GuardianId"]);
+              
+            }
+            var tuple = new Tuple<bool, int>(status,guardianId);
+            return tuple;
+
         }
 
         public List<String> StudentGradeList(string query)
@@ -119,7 +145,31 @@ namespace RepositoryLibrary.DataAccessLayer
             return list;
         }
 
-        
+        public Tuple<bool,User> GetStudentData(User user)
+        {
+            var status = false;
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@studentId", user.UserId));
+            var dataTableResult = databaseManipulation.GetInfo(SqlQueries.getGuardianIdFromStudentId, parameters);
+            if (dataTableResult.Rows.Count > 0)
+            {
+                status = true;
+                user.student.StudentId = user.UserId;
+                List<SqlParameter> parametersSecond = new List<SqlParameter>();
+                parametersSecond.Add(new SqlParameter("@studentId", user.UserId));
+                var dataTableResultSecond = databaseManipulation.GetInfo(SqlQueries.getStudentSubjects, parametersSecond);
+                foreach (DataRow row in dataTableResultSecond.Rows)
+                {
+                    user.student.Subjects.Add(new Subject(row["SubjectName"].ToString(), Convert.ToInt32(row["SubjectId"]), Convert.ToChar(row["Grade"])));
+                }
+
+            }
+            var tuple = new Tuple<bool, User>(status, user);
+
+            return tuple;
+           
+        }
 
     }
 

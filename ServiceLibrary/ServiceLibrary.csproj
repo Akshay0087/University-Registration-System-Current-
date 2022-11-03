@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPasswordHashing.cs" />
+    <Compile Include="Services\IstudentInterfaceFormValidation.cs" />
     <Compile Include="Services\IStudentServices.cs" />
     <Compile Include="Services\IUserServices.cs" />
+    <Compile Include="Services\RegistrationDataValidation.cs" />
+    <Compile Include="Services\StudentInterfaceFormValidation.cs" />
     <Compile Include="Services\StudentServices.cs" />
     <Compile Include="Services\UserServices.cs" />
   </ItemGroup>

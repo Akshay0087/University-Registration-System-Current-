@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using RepositoryLibrary.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Web.Mvc;
+using UniversitySystemRegistration;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Services;
 
@@ -20,24 +23,35 @@ namespace University_Registration_System_Current_.Controllers
         // GET: StudentInterface
         public ActionResult Main()
         {
-            if (Session["CurrentUser"] == null)
+            var user = (User)Session["CurrentUser"];
+            if (Session["CurrentUser"] != null && (UserRoles)Session["CurrentRole"] == UserRoles.Student && user.student==null)
+            {
+                return View();
+            }
+            else
             {
                 return new RedirectResult("/Login/Login");
             }
-            else { return View(); }
 
         }
 
         public ActionResult DetailScreen()
         {
-            return View();
+            var user = (User)Session["CurrentUser"];
+            if (Session["CurrentUser"] != null && (UserRoles)Session["CurrentRole"] == UserRoles.Student && !user.student.StudentGuardianInfo.FirstName.IsNullOrWhiteSpace())
+            {
+                return View();
+            }
+            else
+            {
+                return new RedirectResult("/Login/Login");
+            }
         }
 
         [HttpPost]
-        public ActionResult GetSubjectList()
+        public JsonResult GetSubjectList()
         {
-            List<string> list = new List<string>();
-            list = studentService.GetSubjectAndGradeList(SqlQueries.getSubjectList);
+            var list = studentService.GetListOfData(SqlQueries.getSubjectList);
 
             return Json(new
             {
@@ -46,24 +60,29 @@ namespace University_Registration_System_Current_.Controllers
             }); 
         }
         [HttpPost]
-        public ActionResult GetGradeList()
+        public JsonResult GetGradeList()
         {
-            List<string> list = new List<string>();
-            list = studentService.GetSubjectAndGradeList(SqlQueries.getGradeList);
+            var list = studentService.GetListOfData(SqlQueries.getGradeList);
 
             return Json(new{subjectList = JsonConvert.SerializeObject(list)}); 
         }
         [HttpPost]
-        public ActionResult SaveStudentSubjectGuardianInfo(List<Subject> subject,Guardian guardian)
+        public JsonResult SaveStudentSubjectGuardianInfo(List<Subject> subject,Guardian guardian)
         {
-            var flag = true;
-       
-
+            var flag=true;
+            var user = new User();
+            user=(User)this.Session["CurrentUser"];
+            Student stud = new Student();
+            stud.StudentGuardianInfo= guardian;
+            stud.StudentId = user.UserId;
+            stud.Subjects = subject;
+            user.student=stud;
+            bool GuardianResponse = studentService.SaveStudentGuardian(user);
+            bool SubjectResponse=studentService.SaveStudentSubject(user);
+            var result=((SubjectResponse || GuardianResponse) == false) ? flag =false:flag=true;
             return Json(new
             {
                 result = flag,
-                
-
             });
         }
 

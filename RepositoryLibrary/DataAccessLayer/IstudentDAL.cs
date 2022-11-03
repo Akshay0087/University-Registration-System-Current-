@@ -14,11 +14,13 @@ namespace RepositoryLibrary.DataAccessLayer
 
         User GetStudentSubject(User user);
 
-        bool SetUpdateStudentSubject(User user, DbOperation dbOperation);
+        bool SetStudentSubject(User user);
 
-        bool SetUpdateStudentGuardian(User user, DbOperation dbOperation);
+        bool SetStudentGuardian(User user);
 
         List<String> StudentGradeList(string query);
+
+        Tuple<bool, User> GetStudentData(User user);
 
     }
 }

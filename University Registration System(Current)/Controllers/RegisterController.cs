@@ -27,17 +27,25 @@ namespace UniversitySystemRegistration.Controllers
             var _msg= true;
             var flag = false;
             userData.UserRole = UserRoles.Student;
-            
+
             if (!userService.UserCheck(userData))
             {
                 flag = userService.insertUserData(userData);
                 _msg = false;
+                return Json(new
+                {
+                    result = flag,
+                    msg = _msg
+                });
             }
-            return Json(new
+            else
             {
-                result = flag,
-                msg = _msg
-            });
+                return Json(new
+                {
+                    result = flag,
+                    msg = _msg
+                });
+            }
         }
 
     }

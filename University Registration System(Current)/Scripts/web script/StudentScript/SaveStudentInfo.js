@@ -19,22 +19,21 @@ function registerStudentInfoButton() {
 
 	toastr.options.timeOut = 100000;
 
+
 	var authObjj = {
-		subject: [{
-			SubjectGrade: grade1,
-			SubjectName: subject1
-
-		}, {
-			SubjectGrade: grade2,
-			SubjectName: subject2
-
-		},
-		{
-			SubjectGrade: grade3,
-			SubjectName: subject3
-
-		}
-		],
+		subject: [
+					{
+						SubjectGrade: grade1,
+						SubjectName: subject1
+						}, {
+							SubjectGrade: grade2,
+							SubjectName: subject2
+						},
+						{
+							SubjectGrade: grade3,
+							SubjectName: subject3
+						}
+						],
 		guardian: {
 			FirstName: firstname,
 			LastName: lastname
@@ -48,10 +47,11 @@ function registerStudentInfoButton() {
 
 	sendData(authObjj).then((response) => {
 		if (response.result) {
-			toastr.success("Login Successful");
-
+			toastr.success("Information Successfully registered");
+			setTimeout(redirect, 2000);
 		} else {
-			toastr.error('Login Failed');
+			toastr.error('Information saving failed.Please try again');
+			setTimeout("/StudentInterface/Main",2000);
 			return false;
 		}
 	})
@@ -64,7 +64,7 @@ function registerStudentInfoButton() {
 
 
 function redirect() {
-	window.location.href = "/Login/Login";
+	window.location.href = "/StudentInterface/DetailsScreen";
 }
 
 

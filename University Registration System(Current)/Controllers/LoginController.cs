@@ -8,10 +8,12 @@ namespace UniversitySystemRegistration.Controllers
     {
 
         public readonly IUserServices userService;
+        public readonly IStudentServices studentService;
 
-        public LoginController(IUserServices _userService)
+        public LoginController(IUserServices _userService,IStudentServices _studentService)
         {
             userService = _userService;
+            studentService = _studentService;
         }
 
         public ActionResult Login()
@@ -27,9 +29,12 @@ namespace UniversitySystemRegistration.Controllers
             if (flag)
             {
                 User authenticatedUser = userService.GetUserData(userData);
-
                 this.Session["CurrentUser"] = authenticatedUser;
                 this.Session["CurrentRole"] = authenticatedUser.UserRole;
+                if (authenticatedUser.UserRole == UserRoles.Student) { 
+                    var tuple=studentService.GetStudentDataFromDb(authenticatedUser);
+                    this.Session["CurrentUser"] = tuple.Item2;
+                 }
 
             }
 

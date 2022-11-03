@@ -35,9 +35,23 @@ namespace UniversitySystemRegistration.Services
         }
 
 
-        public List<string> GetSubjectAndGradeList(string query)
+        public List<string> GetListOfData(string query)
         {
             return _studentDAL.StudentGradeList(query);
+        }
+
+        public bool SaveStudentSubject(User user)
+        {
+            return _studentDAL.SetStudentSubject(user);
+        }
+
+        public bool SaveStudentGuardian(User user)
+        {
+            return _studentDAL.SetStudentGuardian(user);
+        }
+        public Tuple<bool,User> GetStudentDataFromDb(User user)
+        {
+            return _studentDAL.GetStudentData(user);
         }
     }
 }
