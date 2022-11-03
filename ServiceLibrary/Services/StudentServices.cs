@@ -53,5 +53,13 @@ namespace UniversitySystemRegistration.Services
         {
             return _studentDAL.GetStudentData(user);
         }
+
+        public Student StudentInfoForDetailScreen(User user)
+        {
+            Student stud = new Student();
+            stud = user.student;
+            return stud;
+        }
+        
     }
 }

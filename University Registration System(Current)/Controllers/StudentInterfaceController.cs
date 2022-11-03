@@ -28,6 +28,7 @@ namespace University_Registration_System_Current_.Controllers
             {
                 var tuple = studentService.GetStudentDataFromDb(user);
                 user = tuple.Item2;
+                this.Session["CurrentUser"]= user;
                 if (user.student == null) { return View(); } else { return new RedirectResult("/StudentInterface/DetailsScreen"); }
             }
             else
@@ -70,6 +71,24 @@ namespace University_Registration_System_Current_.Controllers
 
             return Json(new{subjectList = JsonConvert.SerializeObject(list)}); 
         }
+        [HttpPost]
+        public JsonResult GetStudentGuardianStatusInfo()
+        {
+            User user = (User)Session["CurrentUser"];
+            var list = user.student.Subjects;
+
+            return Json(new { subjectList = JsonConvert.SerializeObject(list) });
+        }
+        [HttpPost]
+        public JsonResult GetStudentStudentSubjectList()
+        {
+            var result = true;
+            User user = (User)Session["CurrentUser"];
+            return Json(new { result = result,
+            resultList = JsonConvert.SerializeObject(studentService.StudentInfoForDetailScreen(user)) });  
+        }
+
+
         [HttpPost]
         public JsonResult SaveStudentSubjectGuardianInfo(List<Subject> subject,Guardian guardian)
         {

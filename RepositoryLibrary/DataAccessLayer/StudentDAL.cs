@@ -147,6 +147,7 @@ namespace RepositoryLibrary.DataAccessLayer
         public Tuple<bool,User> GetStudentData(User user)
         {
             var status = false;
+            var query = "Select FirstName,LastName from Guardian where GuardianId=@guardianId";
 
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@studentId", user.UserId));
@@ -155,8 +156,15 @@ namespace RepositoryLibrary.DataAccessLayer
             {
                 status = true;
                 Student stud = new Student();
+                
+                    Guardian guardian = new Guardian();
+                    guardian.GuardianId = Convert.ToInt32(dataTableResult.Rows[0]["GuardianId"]);
+                stud.StudentGuardianInfo = guardian;
                 stud.StudentId = user.UserId;
-                user.student =stud;
+                if (!((dataTableResult.Rows[0]["StudentStatus"].ToString())=="" )){
+                    stud.StudentStatus = Convert.ToChar(dataTableResult.Rows[0]["StudentStatus"]);
+                }
+                user.student = stud;
                 List<SqlParameter> parametersSecond = new List<SqlParameter>();
                 parametersSecond.Add(new SqlParameter("@studentId", user.UserId));
                 var dataTableResultSecond = databaseManipulation.GetInfo(SqlQueries.getStudentSubjects, parametersSecond);
@@ -164,13 +172,18 @@ namespace RepositoryLibrary.DataAccessLayer
                 {
                     user.student.Subjects.Add(new Subject(row["SubjectName"].ToString(), Convert.ToInt32(row["SubjectId"]), Convert.ToChar(row["Grade"])));
                 }
-
+                List<SqlParameter> parameterThird = new List<SqlParameter>();
+                parameterThird.Add(new SqlParameter("@guardianId", user.student.StudentGuardianInfo.GuardianId));
+                var dataTableResultThird = databaseManipulation.GetInfo(query, parameterThird);
+                user.student.StudentGuardianInfo.FirstName=dataTableResultThird.Rows[0]["FirstName"].ToString();
+                user.student.StudentGuardianInfo.LastName = dataTableResultThird.Rows[0]["LastName"].ToString();
             }
             var tuple = new Tuple<bool, User>(status, user);
 
             return tuple;
            
         }
+
 
     }
 

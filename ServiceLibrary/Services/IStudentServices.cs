@@ -16,6 +16,8 @@ namespace UniversitySystemRegistration.Services
 
         Tuple<bool, User> GetStudentDataFromDb(User user);
 
+        Student StudentInfoForDetailScreen(User user);
+
 
     }
 }

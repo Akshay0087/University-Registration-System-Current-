@@ -150,6 +150,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\StudentInterfaceController.cs" />
@@ -194,6 +195,7 @@
     <Content Include="Scripts\web script\RegisterScript\PhoneCountryDisplay.js" />
     <Content Include="Scripts\web script\RegisterScript\RegisterJS.js" />
     <Content Include="Scripts\web script\StudentScript\CheckSubject.js" />
+    <Content Include="Scripts\web script\StudentScript\GetStudentDetail.js" />
     <Content Include="Scripts\web script\StudentScript\SaveStudentInfo.js" />
     <Content Include="Scripts\web script\StudentScript\StudentGetSubject.js" />
     <Content Include="Web.config" />
@@ -211,9 +213,11 @@
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\StudentInterface\Main.cshtml" />
     <Content Include="Views\StudentInterface\DetailsScreen.cshtml" />
+    <Content Include="Views\Admin\AdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\web script\AdminScript\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
