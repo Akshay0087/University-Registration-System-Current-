@@ -24,6 +24,7 @@ namespace UniversitySystemRegistration.Repository
             try
             {
                 var result = databaseManipulation.GetInfo(SqlQueries.loginCheckQuery, parameters);
+                if (!(result.Rows.Count > 0)) { return answer; }
                 string dbpassword = (result.Rows[0].ItemArray[0]).ToString();
                 answer = dbpassword.Equals(userData.PasswordHash) ? true : false;
                 answer = BCrypt.Net.BCrypt.Verify(userData.PasswordHash,dbpassword);

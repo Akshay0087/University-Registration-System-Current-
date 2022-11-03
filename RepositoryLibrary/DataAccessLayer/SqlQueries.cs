@@ -34,11 +34,11 @@ namespace RepositoryLibrary.DataAccessLayer
         public
         const string infoCheckQuery = "SELECT u.UserId FROM Users u inner join UsersInfo ui on u.UserId=ui.UserId where u.EmailAddress=@emailAddress OR ui.Phone=@phoneNum OR ui.NID=@nid";
         public
-        const string insertIdInStudent = "Update Student set GuardianId=@guardianId where StudentId=@studentId";
+        const string insertIdInStudent = "insert into Student(StudentId,GuardianId)values(@guardianId,@studentId)";
 
         public const string getGuardianIdFromStudentId="SELECT GuardianId from Student where StudentId = @studentId";
 
-        public const string getStudentSubjects = "Select Grade,SubjectId,SubjectName from SubjectResult sr inner join Subject s on sr.SubjectId=s.SubjectId";
+        public const string getStudentSubjects = "Select sr.Grade,sr.SubjectId,s.SubjectName from SubjectResult sr inner join Subject s on sr.SubjectId=s.SubjectId";
 
         public
         const string getSubjectList = "SELECT SubjectName from Subject";

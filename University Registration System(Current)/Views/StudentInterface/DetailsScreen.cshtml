@@ -1,12 +1,8 @@
 ﻿
-
-<head>
-
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>DEtail</title>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -16,28 +12,75 @@
     <script src="~/Scripts/web script/LoginScript/LoginJS.js" type="text/javascript"></script>
 </head>
 <body>
-
-
-
-    <div id="form_info">
-        <h1 id="title_university">Detail Screen</h1><br><br>
-        <form>
-
-            <h1>Login</h1><br>
-
-            <label for="email">YOUR EMAIL</label><
-
-            <label for="pword">YOUR PASSWORD</label>
-            <input type="password" id="pword" required>
-
-            <button onclick=login_button() id="btnMain">Log In</button><br>
-        </form>
-        <div id="register_div">
-            <button onclick="window.location.href = '/register/Register';" id="btnMinor">New User? Register Now</button>
-        </div>
-
+    <div class="topnav">
+        <a class="active" href="#">Registration</a>
+        <a id="logout" href="#" onclick="return Logout()">Logout</a>
     </div>
-
+    <div id="form_info">
+        <form>
+            <h1>Student Details</h1>
+            <div class="row">
+                <div class="col">
+                    <label for="fname">Firstname</label>
+                    <label id="fname"></label>
+                </div>
+                <div class="col">
+                    <label for="lname">Lastname</label>
+                    <label id="lname"></label>
+                </div>
+            </div>
+            <br>
+            <h1>Subject Details</h1>
+            <div class="row">
+                <div class="col">
+                    <label>Subject 1</label>
+                </div>
+                <div class="col">
+                    <label>Grade</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label id="subject1_detail"></label>
+                </div>
+                <div class="col">
+                    <label id="grade1_detail"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Subject 2</label>
+                </div>
+                <div class="col">
+                    <label>Grade</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label id="subject2_detail"></label>
+                </div>
+                <div class="col">
+                    <label id="grade2_detail"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Subject 3</label>
+                </div>
+                <div class="col">
+                    <label>Grade</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label id="subject3_detail"></label>
+                </div>
+                <div class="col">
+                    <label id="grade3_detail"></label>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

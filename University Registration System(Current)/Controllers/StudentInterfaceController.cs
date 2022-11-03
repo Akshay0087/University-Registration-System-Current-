@@ -24,26 +24,30 @@ namespace University_Registration_System_Current_.Controllers
         public ActionResult Main()
         {
             var user = (User)Session["CurrentUser"];
-            if (Session["CurrentUser"] != null && (UserRoles)Session["CurrentRole"] == UserRoles.Student && user.student==null)
+            if (Session["CurrentUser"] != null && (UserRoles)Session["CurrentRole"] == UserRoles.Student)
             {
-                return View();
+                var tuple = studentService.GetStudentDataFromDb(user);
+                user = tuple.Item2;
+                if (user.student == null) { return View(); } else { return new RedirectResult("/StudentInterface/DetailsScreen"); }
             }
             else
             {
+                Session.Clear();
                 return new RedirectResult("/Login/Login");
             }
 
         }
 
-        public ActionResult DetailScreen()
+        public ActionResult DetailsScreen()
         {
             var user = (User)Session["CurrentUser"];
-            if (Session["CurrentUser"] != null && (UserRoles)Session["CurrentRole"] == UserRoles.Student && !user.student.StudentGuardianInfo.FirstName.IsNullOrWhiteSpace())
+            if (Session["CurrentUser"] != null && (UserRoles)Session["CurrentRole"] == UserRoles.Student)
             {
                 return View();
             }
             else
             {
+                Session.Clear();
                 return new RedirectResult("/Login/Login");
             }
         }

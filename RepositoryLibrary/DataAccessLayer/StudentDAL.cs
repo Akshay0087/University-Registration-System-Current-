@@ -106,14 +106,13 @@ namespace RepositoryLibrary.DataAccessLayer
             }
             else
             {
-                var resultSet = databaseManipulation.GetInfo(SqlQueries.insertGuardian, parameters);
+                var resultSet = databaseManipulation.SetInfo(SqlQueries.insertGuardian, parameters);
                 var dataTableResult = databaseManipulation.GetInfo(SqlQueries.getGuardianId,parameters);
                 user.student.StudentGuardianInfo.GuardianId = Convert.ToInt32(dataTableResult.Rows[0]["GuardianId"]);
             }
             parametersSecond.Add(new SqlParameter("@guardianId", user.student.StudentGuardianInfo.GuardianId));
             parametersSecond.Add(new SqlParameter("@studentId", user.student.StudentId));
             result = databaseManipulation.SetInfo(SqlQueries.insertIdInStudent, parametersSecond);
-
 
             return result;
         }
@@ -155,7 +154,9 @@ namespace RepositoryLibrary.DataAccessLayer
             if (dataTableResult.Rows.Count > 0)
             {
                 status = true;
-                user.student.StudentId = user.UserId;
+                Student stud = new Student();
+                stud.StudentId = user.UserId;
+                user.student =stud;
                 List<SqlParameter> parametersSecond = new List<SqlParameter>();
                 parametersSecond.Add(new SqlParameter("@studentId", user.UserId));
                 var dataTableResultSecond = databaseManipulation.GetInfo(SqlQueries.getStudentSubjects, parametersSecond);
