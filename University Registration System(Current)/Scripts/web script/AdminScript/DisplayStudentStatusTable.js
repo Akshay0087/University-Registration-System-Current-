@@ -42,7 +42,7 @@ function DisplayTable() {
 			}
 			placeholder.innerHTML = out;
 		} else {
-			toastr.error('Login Failed');
+			toastr.error('Could not reload. Please try again later');
 			return false;
 		}
 	}).catch((error) => {
