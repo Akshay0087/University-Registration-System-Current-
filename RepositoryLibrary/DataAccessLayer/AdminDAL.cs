@@ -95,7 +95,7 @@ namespace RepositoryLibrary.DataAccessLayer
                 Student stud = new Student();
                 stud.StudentId= Convert.ToInt32(row["StudentId"]);
                 stud.TotalSubjectPoints = Convert.ToInt32(row["GradePoint"]);
-                stud.StudentFullName = string.Concat(row["FirstName"].ToString(), row["LastName"].ToString());
+                stud.StudentFullName = string.Concat(row["FirstName"].ToString(), " ", row["LastName"].ToString());
                 approvedStudent.Add(stud);
             }
             foreach (DataRow row in resultWaiting.Rows)
@@ -104,7 +104,7 @@ namespace RepositoryLibrary.DataAccessLayer
                 Student stud = new Student();
                 stud.StudentId = Convert.ToInt32(row["StudentId"]);
                 stud.TotalSubjectPoints = Convert.ToInt32(row["GradePoint"]);
-                stud.StudentFullName = string.Concat(row["FirstName"].ToString(), row["LastName"].ToString());
+                stud.StudentFullName = string.Concat(row["FirstName"].ToString(), " ", row["LastName"].ToString());
                 waitingStudent.Add(stud);
             }
             foreach (DataRow row in resultRejected.Rows)

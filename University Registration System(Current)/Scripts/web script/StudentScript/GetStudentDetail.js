@@ -24,7 +24,7 @@ function registerStudentInfoButton() {
 				
 				firstname.textContent = obj["StudentGuardianInfo"]["FirstName"];
 				lastname.textContent = obj["StudentGuardianInfo"]["LastName"];
-				if (obj["StudentStatus"] == " " || obj["StudentStatus"] == "P" ||) {
+				if (obj["StudentStatus"] == " " || obj["StudentStatus"] == "P") {
 					status.textContent = "Pending"
 				}
 				if (obj["StudentStatus"] == "A") {

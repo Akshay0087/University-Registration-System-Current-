@@ -14,7 +14,7 @@ function refresh_button() {
 		if (response.result) {
 			toastr.success("Reload Successful");
 			toastr.success("New List Generated");
-			setTimeout(redirect, 2000);
+			setTimeout(redirectToAdmin, 2000);
 
 		} else {
 			toastr.error('Reload Failed');
@@ -28,7 +28,7 @@ function refresh_button() {
 	
 }
 
-function redirect() {
+function redirectToAdmin() {
 	window.location.href = "/Admin/AdminPanel";
 }
 
@@ -38,7 +38,7 @@ function reloadStudentSubjectList(userData) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",
-			url: "/Admin/GetStudentStatusList",
+			url: "/Admin/ReloadStudentStatus",
 			data: userData,
 			dataType: "json",
 			success: function (data) {
