@@ -25,7 +25,7 @@ function login_button() {
 		sendData(authObj).then((response) => {
 			if (response.result) {
 				toastr.success("Login Successful");
-				setTimeout(redirect, 2000);
+				setTimeout(window.location.href = response.url, 2000);
 
 			} else {
 				toastr.error('Login Failed');
@@ -38,11 +38,6 @@ function login_button() {
 			});
 	}
 }
-
-function redirect() {
-	window.location.href = "/StudentInterface/Main";
-}
-
 
 function sendData(userlogin) {
 	return new Promise((resolve, reject) => {

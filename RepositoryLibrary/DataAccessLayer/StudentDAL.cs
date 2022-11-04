@@ -157,8 +157,8 @@ namespace RepositoryLibrary.DataAccessLayer
                 status = true;
                 Student stud = new Student();
                 
-                    Guardian guardian = new Guardian();
-                    guardian.GuardianId = Convert.ToInt32(dataTableResult.Rows[0]["GuardianId"]);
+                Guardian guardian = new Guardian();
+                guardian.GuardianId = Convert.ToInt32(dataTableResult.Rows[0]["GuardianId"]);
                 stud.StudentGuardianInfo = guardian;
                 stud.StudentId = user.UserId;
                 if (!((dataTableResult.Rows[0]["StudentStatus"].ToString())=="" )){
@@ -183,6 +183,8 @@ namespace RepositoryLibrary.DataAccessLayer
             return tuple;
            
         }
+
+       
 
 
     }

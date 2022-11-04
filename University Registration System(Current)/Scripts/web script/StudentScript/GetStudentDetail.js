@@ -24,14 +24,17 @@ function registerStudentInfoButton() {
 				
 				firstname.textContent = obj["StudentGuardianInfo"]["FirstName"];
 				lastname.textContent = obj["StudentGuardianInfo"]["LastName"];
-				if (obj["StudentStatus"] == "") {
+				if (obj["StudentStatus"] == " " || obj["StudentStatus"] == "P" ||) {
 					status.textContent = "Pending"
 				}
 				if (obj["StudentStatus"] == "A") {
-					status.textContent = "Accept"
+					status.textContent = "Accepted"
 				}
 				if (obj["StudentStatus"] == "W") {
 					status.textContent = "Waiting"
+				}
+				if (obj["StudentStatus"] == "R") {
+					status.textContent = "Rejected"
 				}
 				for (var i = 0; i < obj["Subjects"].length; ++i) {
 					if (i == 0) {

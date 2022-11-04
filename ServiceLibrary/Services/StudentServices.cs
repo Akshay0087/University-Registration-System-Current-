@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UniversitySystemRegistration.Models;
-using UniversitySystemRegistration.Repository;
 
 namespace UniversitySystemRegistration.Services
 {
@@ -60,6 +59,7 @@ namespace UniversitySystemRegistration.Services
             stud = user.student;
             return stud;
         }
+
         
     }
 }

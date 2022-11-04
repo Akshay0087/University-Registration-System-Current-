@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessLayer\AdminDAL.cs" />
     <Compile Include="DataAccessLayer\DatabaseConnection.cs" />
+    <Compile Include="DataAccessLayer\IAdminDAL.cs" />
     <Compile Include="DataAccessLayer\SqlQueries.cs" />
     <Compile Include="Models\DbOperation.cs" />
     <Compile Include="DataAccessLayer\IDatabaseConnection.cs" />

@@ -1,0 +1,22 @@
+﻿#approvedRow {
+    background-color: #6DDE73;
+}
+
+#waitingRow {
+    background-color: #F1EB4D;
+}
+#rejectedRow {
+    background-color: #DC755E;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+#button_admin {
+    align-items: center;
+}

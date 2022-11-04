@@ -12,5 +12,7 @@ namespace UniversitySystemRegistration.Models
         public int TotalScoreOfSubjects { get; set; }
         public int StudentId { get; set; }
         public char StudentStatus { get; set; }
+        public int TotalSubjectPoints { get; set; }
+        public string StudentFullName { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace UniversitySystemRegistration.Controllers
         public JsonResult Authenticate(User userData)
         {
             var flag = userService.UserLogin(userData);
+            var path = Url.Action("Main","StudentInterface");
 
             if (flag)
             {
@@ -34,14 +35,18 @@ namespace UniversitySystemRegistration.Controllers
                 if (authenticatedUser.UserRole == UserRoles.Student) { 
                     var tuple=studentService.GetStudentDataFromDb(authenticatedUser);
                     this.Session["CurrentUser"] = tuple.Item2;
-                 }
+                 }else if(authenticatedUser.UserRole == UserRoles.Admin)
+                {
+
+                    path = Url.Action("AdminPanel","Admin");
+                }
 
             }
 
             return Json(new
             {
                 result = flag,
-                url = Url.Action("Main", "RequestInterface"),
+                url = path,
 
             });
         }
@@ -50,7 +55,7 @@ namespace UniversitySystemRegistration.Controllers
         public JsonResult Logout()
         {
             this.Session.Clear();
-
+            this.Session.Abandon();
             return Json(new
             {
                 result = true
