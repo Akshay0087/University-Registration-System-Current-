@@ -20,3 +20,6 @@ table, th, td {
 #button_admin {
     align-items: center;
 }
+th, td {
+    text-align: center;
+}

@@ -9,6 +9,8 @@ function DisplayTable() {
 
 	getStudentStatusList().then((response) => {
 		if (response.status) {
+
+			out += `<tr id="approvedRow"><th colspan="4">Accepted Students</th></tr>`;
 			for (let approved of response.approvedList) {
 				out += `
 						 <tr id="approvedRow">
@@ -19,6 +21,7 @@ function DisplayTable() {
 						 </tr>
 						`;
 			}
+			out += `<tr id="waitingRow"><th colspan="4">Waiting Students</th></tr>`;
 			for (let waiting of response.waitingList) {
 				out += `
 						 <tr id="waitingRow">
@@ -29,6 +32,7 @@ function DisplayTable() {
 						 </tr>
 						`;
 			}
+			out += `<tr id="rejectedRow" ><th colspan="4">Rejected Students</th></tr>`;
 			for (let rejected of response.rejectedList) {
 				out += `
 						 <tr id="rejectedRow">

@@ -9,7 +9,6 @@ namespace UniversitySystemRegistration.Services
     public class StudentServices : IStudentServices
     {
         private readonly IStudentDAL _studentDAL;
-        private readonly IStudentInterfaceFormValidation _studentValidationBL;
         public StudentServices(IStudentDAL studentDAL)
         {
             _studentDAL = studentDAL;
