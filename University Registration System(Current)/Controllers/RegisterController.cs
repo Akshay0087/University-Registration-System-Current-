@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using UniversitySystemRegistration;
+﻿using Newtonsoft.Json;
+using System.Web.Mvc;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Services;
 
@@ -24,27 +24,40 @@ namespace UniversitySystemRegistration.Controllers
         [HttpPost]
         public JsonResult SaveUserData(User userData)
         {
-            var _msg= true;
-            var flag = false;
             userData.UserRole = UserRoles.Student;
-
-            if (!userService.UserCheck(userData))
+            var userCheckResult=userService.UserCheck(userData);
+            var dataCase = "insert";
+         
+            
+            if (!userCheckResult.Item1)
             {
-                flag = userService.insertUserData(userData);
-                _msg = false;
-                return Json(new
-                {
-                    result = flag,
-                    msg = _msg
-                });
+                dataCase = "uniquenessError";
+                return Json(new{
+                    data = dataCase
+                },
+                JsonRequestBehavior.AllowGet
+                ) ;
             }
-            else
+            else if(!userCheckResult.Item2)
             {
-                return Json(new
-                {
-                    result = flag,
-                    msg = _msg
-                });
+                dataCase = "validationError";
+                return Json(new{ 
+                    data = dataCase,
+                    result = JsonConvert.SerializeObject(userCheckResult.Item3)}
+                );
+            }
+            else if(userCheckResult.Item1&&userCheckResult.Item2){
+                var flag = userService.insertUserData(userData);
+                return Json(new {
+                    data = dataCase, 
+                    status = flag }
+                ) ;
+            }
+            else {
+                bool status = false; 
+                return Json(new { 
+                    status =status }
+                ); 
             }
         }
 

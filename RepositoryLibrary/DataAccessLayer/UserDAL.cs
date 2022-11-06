@@ -36,9 +36,9 @@ namespace UniversitySystemRegistration.Repository
             return answer;
         }
 
-        public bool UserInfoCheck(User user)
+        public bool IsUserUniqueInDB(User user)
         {
-            bool answer = false;
+            bool answer = true;
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             parameters.Add(new SqlParameter("@emailAddress", user.EmailAddress));
@@ -47,7 +47,7 @@ namespace UniversitySystemRegistration.Repository
             try
             {
                 var result = databaseManipulation.GetInfo(SqlQueries.infoCheckQuery, parameters);
-                answer = result.Rows.Count > 0 ? true : false;
+                answer = result.Rows.Count > 0 ? false : true;
             }
             catch (Exception error)
             {

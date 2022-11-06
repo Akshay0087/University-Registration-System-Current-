@@ -1,9 +1,6 @@
-﻿using Microsoft.Ajax.Utilities;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RepositoryLibrary.DataAccessLayer;
-using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Web.Mvc;
 using UniversitySystemRegistration;
 using UniversitySystemRegistration.Models;

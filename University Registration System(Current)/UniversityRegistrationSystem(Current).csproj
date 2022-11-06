@@ -196,7 +196,6 @@
     <Content Include="Scripts\web script\Common Function\FrontendValidation.js" />
     <Content Include="Scripts\web script\LoginScript\LoginJS.js" />
     <Content Include="Scripts\web script\RegisterScript\PasswordMatch.js" />
-    <Content Include="Scripts\web script\RegisterScript\PhoneCountryDisplay.js" />
     <Content Include="Scripts\web script\RegisterScript\RegisterJS.js" />
     <Content Include="Scripts\web script\StudentScript\CheckSubject.js" />
     <Content Include="Scripts\web script\StudentScript\GetStudentDetail.js" />

@@ -1,21 +1,10 @@
 ﻿$(function () {
 	let form = document.querySelector('form');
-	/*const phoneinputfield = document.queryselector("#phone");
-	const phoneinput = window.intltelinput(phoneinputfield, {
-		initialcountry: "mu",
-		utilsscript:
-			"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-	});*/
 	form.addEventListener('submit', (e) => {
 		e.preventDefault();
 		return false;
 	});
 });
-
-function checkPhone() {
-
-}
-
 function register_button() {
 
 	var emailAddress = $("#email").val();
@@ -31,9 +20,11 @@ function register_button() {
 
 	if (emailAddress == "" || password == "" || firstname == "" || lastname == "" || NID == "" || address == "") {
 		toastr.error("Please fill the required fields");
+		return false;
 	} else {
+		
 
-		var authObj = {
+		var userDataObj = {
 			EmailAddress: emailAddress,
 			PasswordHash: password,
 			Firstname: firstname,
@@ -44,19 +35,32 @@ function register_button() {
 			NationalIdentityNumber: NID
 		};
 
-		sendData(authObj).then((response) => {
-			if (!response.msg) {
-				if (response.result) {
+		sendRegisterData(userDataObj).then((response) => {
+			if (response.data=="insert") {
+				if (response.status) {
 					toastr.success("Registration Successful");
-					setTimeout(redirect, 3000);
+					setTimeout(redirectToLogin, 3000);
 				} else {
-					toastr.error('Registration Failed');
+					toastr.error("Registration unsuccessful");
 					return false;
 				}
-			} else {
-				toastr.error("Record already exist. Please Login");
+			}
+			if (response.data == "uniquenessError") {
+				toastr.error("Record already exist. Please fill using unused data");
 				return false;
 			}
+			if (response.data == "validationError") {
+				var dataJson = JSON.parse(response.result);
+				for (let key in dataJson) {
+					var element = document.getElementById(key);
+					toastr.error(dataJson[key]);
+					element.value = "";
+					
+				}
+				return false;
+			} 
+
+
 		})
 			.catch((error) => {
 				toastr.error('An error occured. Please try again later');
@@ -66,11 +70,11 @@ function register_button() {
 	}
 }
 
-function redirect() {
+function redirectToLogin() {
 	window.location.href = "/login/Login";
 }
 
-function sendData(registeruser) {
+function sendRegisterData(registeruser) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",

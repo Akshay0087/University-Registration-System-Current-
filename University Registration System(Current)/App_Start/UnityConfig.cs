@@ -22,6 +22,7 @@ namespace University_Registration_System_Current_
             container.RegisterType<IStudentDAL, StudentDAL>();
             container.RegisterType<IAdminDAL, AdminDAL>();
             container.RegisterType<IAdminServices, AdminServices>();
+            
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

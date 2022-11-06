@@ -1,4 +1,5 @@
 ﻿using RepositoryLibrary.DataAccessLayer;
+using ServiceLibrary.Services;
 using System;
 using System.Collections.Generic;
 using UniversitySystemRegistration.Models;
@@ -8,10 +9,11 @@ namespace UniversitySystemRegistration.Services
     public class StudentServices : IStudentServices
     {
         private readonly IStudentDAL _studentDAL;
+        private readonly IStudentInterfaceFormValidation _studentValidationBL;
         public StudentServices(IStudentDAL studentDAL)
         {
-            
             _studentDAL = studentDAL;
+           // _studentValidationBL = studentValidationBl;
         }
         public int SubjectTotalScoreCalculation(Student student)
         {
@@ -42,11 +44,20 @@ namespace UniversitySystemRegistration.Services
         public bool SaveStudentSubject(User user)
         {
             return _studentDAL.SetStudentSubject(user);
+
+            /*if ((_studentvalidationbl.subjectvalidation(user) && _studentvalidationbl.gradevalidation(user)))
+            {
+                
+            }
+            else
+            {
+                return false;
+            }*/
         }
 
         public bool SaveStudentGuardian(User user)
         {
-            return _studentDAL.SetStudentGuardian(user);
+                return _studentDAL.SetStudentGuardian(user); 
         }
         public Tuple<bool,User> GetStudentDataFromDb(User user)
         {

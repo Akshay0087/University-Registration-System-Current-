@@ -22,7 +22,7 @@ function login_button() {
 			passwordHash: password
 		};
 
-		sendData(authObj).then((response) => {
+		sendLoginData(authObj).then((response) => {
 			if (response.result) {
 				toastr.success("Login Successful");
 				setTimeout(window.location.href = response.url, 2000);
@@ -39,7 +39,7 @@ function login_button() {
 	}
 }
 
-function sendData(userlogin) {
+function sendLoginData(userlogin) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",

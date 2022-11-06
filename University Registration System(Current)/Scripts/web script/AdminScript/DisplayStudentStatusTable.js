@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 	DisplayTable();
-	console.log("Exce")
 });
 function DisplayTable() {
 
