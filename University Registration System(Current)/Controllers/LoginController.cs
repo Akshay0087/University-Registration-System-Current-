@@ -55,8 +55,8 @@ namespace UniversitySystemRegistration.Controllers
         [OutputCache(NoStore =true,Duration =0,VaryByParam ="None")]
         public JsonResult Logout()
         {
-            this.Session.Clear();
-            this.Session.Abandon();
+            Session.Clear();
+            Session.Abandon();
             return Json(new
             {
                 result = true

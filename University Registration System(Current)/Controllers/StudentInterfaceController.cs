@@ -25,8 +25,15 @@ namespace University_Registration_System_Current_.Controllers
             {
                 var tuple = studentService.GetStudentDataFromDb(user);
                 user = tuple.Item2;
-                this.Session["CurrentUser"]= user;
-                if (user.student == null) { return View(); } else { return new RedirectResult("/StudentInterface/DetailsScreen"); }
+                this.Session["CurrentUser"] = user;
+                if (user.student == null)
+                {
+                    return View();
+                }
+                else
+                {
+                    return new RedirectResult("/StudentInterface/DetailsScreen");
+                }
             }
             else
             {
@@ -59,14 +66,17 @@ namespace University_Registration_System_Current_.Controllers
             {
 
                 subjectList = JsonConvert.SerializeObject(list)
-            }); 
+            });
         }
         [HttpPost]
         public JsonResult GetGradeList()
         {
             var list = studentService.GetListOfData(SqlQueries.getGradeList);
 
-            return Json(new{subjectList = JsonConvert.SerializeObject(list)}); 
+            return Json(new
+            {
+                subjectList = JsonConvert.SerializeObject(list)
+            });
         }
         [HttpPost]
         public JsonResult GetStudentGuardianStatusInfo()
@@ -74,38 +84,42 @@ namespace University_Registration_System_Current_.Controllers
             User user = (User)Session["CurrentUser"];
             var list = user.student.Subjects;
 
-            return Json(new { subjectList = JsonConvert.SerializeObject(list) });
+            return Json(new
+            {
+                subjectList = JsonConvert.SerializeObject(list)
+            });
         }
         [HttpPost]
         public JsonResult GetStudentStudentSubjectList()
         {
             var result = true;
             User user = (User)Session["CurrentUser"];
-            return Json(new { result = result,
-            resultList = JsonConvert.SerializeObject(studentService.StudentInfoForDetailScreen(user)) });  
+            return Json(new
+            {
+                result = result,
+                resultList = JsonConvert.SerializeObject(studentService.StudentInfoForDetailScreen(user))
+            });
         }
 
-
         [HttpPost]
-        public JsonResult SaveStudentSubjectGuardianInfo(List<Subject> subject,Guardian guardian)
+        public JsonResult SaveStudentSubjectGuardianInfo(List<Subject> subject, Guardian guardian)
         {
-            var flag=true;
+            var flag = true;
             var user = new User();
-            user=(User)this.Session["CurrentUser"];
+            user = (User)this.Session["CurrentUser"];
             Student stud = new Student();
-            stud.StudentGuardianInfo= guardian;
+            stud.StudentGuardianInfo = guardian;
             stud.StudentId = user.UserId;
             stud.Subjects = subject;
-            user.student=stud;
+            user.student = stud;
             bool GuardianResponse = studentService.SaveStudentGuardian(user);
-            bool SubjectResponse=studentService.SaveStudentSubject(user);
-            var result=((SubjectResponse || GuardianResponse) == false) ? flag =false:flag=true;
+            bool SubjectResponse = studentService.SaveStudentSubject(user);
+            var result = ((SubjectResponse || GuardianResponse) == false) ? flag = false : flag = true;
             return Json(new
             {
                 result = flag,
             });
         }
 
-       
     }
 }

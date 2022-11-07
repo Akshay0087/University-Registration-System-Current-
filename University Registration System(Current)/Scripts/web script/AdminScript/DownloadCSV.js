@@ -32,7 +32,13 @@ function DownloadCsvFile() {
 
 			content += heading + "\n" + dataRows.join("\n");
 
-			window.open(encodeURI(content));
+			var encodedUri = encodeURI(content);
+			var link = document.createElement("a");
+			link.setAttribute("href", encodedUri);
+			link.setAttribute("download", "Student_Status_Summary.csv");
+			document.body.appendChild(link); // Required for FF
+
+			link.click();
 
 		} else {
 			toastr.error('Login Failed');

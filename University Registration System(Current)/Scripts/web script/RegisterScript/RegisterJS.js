@@ -7,6 +7,7 @@
 });
 function register_button() {
 
+	
 	var emailAddress = $("#email").val();
 	var password = $("#password1").val();
 	var firstname = $("#fname").val();
@@ -22,8 +23,6 @@ function register_button() {
 		toastr.error("Please fill the required fields");
 		return false;
 	} else {
-		
-
 		var userDataObj = {
 			EmailAddress: emailAddress,
 			PasswordHash: password,

@@ -11,12 +11,6 @@ namespace UniversitySystemRegistration.Services
         bool insertUserData(User user);
         User GetUserData(User user);
         Tuple<bool, bool, Dictionary<string, string>> UserCheck(User user);
-        bool IsPhoneNumberValid(User user);
-        bool IsAddressValid(User user);
-        bool IsNationalIdentityNumberValid(User user);
-        bool IsLastNameValid(User user);
-        bool IsFirstNameValid(User user);
-        bool IsEmailValid(User user);
-        Tuple<bool, Dictionary<string, string>> IsUserDataValid(User user);
+    
     }
 }

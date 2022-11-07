@@ -17,10 +17,7 @@ namespace RepositoryLibrary.DataAccessLayer
         bool SetStudentSubject(User user);
 
         bool SetStudentGuardian(User user);
-
-        List<String> StudentGradeList(string query);
-
         Tuple<bool, User> GetStudentData(User user);
-
+        List<string> StudentGradeSubjectList(string query);
     }
 }

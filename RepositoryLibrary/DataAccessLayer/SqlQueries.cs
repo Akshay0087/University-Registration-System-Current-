@@ -51,5 +51,14 @@
             "select UserId from Users where EmailAddress=@emailAddress";
         public const string insertIntoUsersInfo =
             "insert into UsersInfo (Nid,FirstName,LastName,UserAddress,Phone,DateOfBirth,UserId) values (@nid,@firstname,@lastname,@address,@phone,@dateOfBirth,@userId)";
+
+        public const string selectTop15StudentQuery =
+        "Select top(15) StudentId,sum(GradePoint) As GradePoint from(Select SubjectResult.StudentId as StudentId, GradeInfo.GradePoint as GradePoint From SubjectResult inner join Subject on SubjectResult.SubjectId= Subject.SubjectId inner join GradeInfo on GradeInfo.Grade= SubjectResult.Grade) finalResult group by finalResult.StudentId having sum(GradePoint)>9 order by sum(GradePoint) desc, StudentId asc";
+        public const string selectRejectStudentQuery =
+        "Select StudentId,sum(GradePoint) As GradePoint from(Select SubjectResult.StudentId as StudentId, GradeInfo.GradePoint as GradePoint From SubjectResult inner join Subject on SubjectResult.SubjectId= Subject.SubjectId inner join GradeInfo on GradeInfo.Grade= SubjectResult.Grade) finalResult group by finalResult.StudentId having sum(GradePoint)<10";
+        public const string selectPendingStudentQuery = "Select StudentId from Student where StudentStatus='P'";
+        public const string insertStatus = "Update Student SET StudentStatus=@char where StudentId=@studentId";
+        public const string clearStatusField = "Update Student SET StudentStatus='P'";
+        public const string getStudentFromDB = "select UsersInfo.FirstName, UsersInfo.LastName, StudentId,sum(GradePoint) As GradePoint  from (Select SubjectResult.StudentId as StudentId,GradeInfo.GradePoint as GradePoint  From SubjectResult  inner join Subject  on SubjectResult.SubjectId=Subject.SubjectId inner join GradeInfo on GradeInfo.Grade=SubjectResult.Grade inner join Student on Student.StudentId=SubjectResult.StudentId where Student.StudentStatus=@char) finalResult inner Join UsersInfo on UsersInfo.UserId = finalResult.StudentId group by finalResult.StudentId, UsersInfo.FirstName, UsersInfo.LastName";
     }
 }

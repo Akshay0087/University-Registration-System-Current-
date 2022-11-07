@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace UniversitySystemRegistration.Repository
@@ -46,11 +47,7 @@ namespace UniversitySystemRegistration.Repository
                     }
                 }
             }
-            else
-            {
-               //
-            }
-
+            
             return tableData;
         }
 
@@ -61,8 +58,11 @@ namespace UniversitySystemRegistration.Repository
             OpenDbConnection();
 
             var result=false;
-
+            SqlTransaction transaction;
+            transaction = DbConnection.BeginTransaction();
+            
             SqlCommand sqlcom = new SqlCommand(query, DbConnection);
+            sqlcom.Transaction = transaction;
             sqlcom.CommandType = CommandType.Text;
             if (parameters != null)
             {
@@ -72,15 +72,21 @@ namespace UniversitySystemRegistration.Repository
             }
             try
             {
+
                 int rowAffected=sqlcom.ExecuteNonQuery();
                 result =rowAffected>0?  true : false;
-
+                transaction.Commit();
             }
             catch (Exception error)
             {
+                transaction.Rollback();
                 throw error;
             }
-            CloseDbConnection();
+            finally
+            {
+                CloseDbConnection();
+            }
+            
 
             return result;
         }
@@ -94,6 +100,11 @@ namespace UniversitySystemRegistration.Repository
             {
                 string strcon = @ConfigurationManager.AppSettings["ConnectionString"]; ;
                 DbConnection = new SqlConnection(strcon);
+
+                if (DbConnection.State == ConnectionState.Open)
+                {
+                    CloseDbConnection();
+                }
                 DbConnection.Open();
            
             }

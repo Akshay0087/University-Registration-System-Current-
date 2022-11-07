@@ -1,24 +1,27 @@
 ﻿using RepositoryLibrary.DataAccessLayer;
+using System.Collections.Generic;
+using System;
 using System.Linq;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Services;
 
 namespace ServiceLibrary.Services
 {
-    public class StudentInterfaceFormValidation: IStudentInterfaceFormValidation
+    public class StudentGuardianSubjectValidation : IStudentGuardianSubjectValidation
     {
+        private readonly IStudentDAL studentDAL;
 
-        private readonly IStudentServices _studentServices;
-        public StudentInterfaceFormValidation(IStudentServices studentServices)
+        public StudentGuardianSubjectValidation(IStudentDAL _studentDAL)
         {
-
-            _studentServices = studentServices;
+            studentDAL = _studentDAL;
         }
 
         public bool subjectValidation(User user)
         {
+            
+
             bool status = true;
-            var subjectList = _studentServices.GetListOfData(SqlQueries.getSubjectList);
+            var subjectList = studentDAL.StudentGradeSubjectList(SqlQueries.getSubjectList);
             int count = 0;
 
             while (status && count < user.student.Subjects.Count)
@@ -32,7 +35,7 @@ namespace ServiceLibrary.Services
         public bool gradeValidation(User user)
         {
             bool status = true;
-            var gradeList = _studentServices.GetListOfData(SqlQueries.getGradeList);
+            var gradeList = studentDAL.StudentGradeSubjectList(SqlQueries.getGradeList);
             int count = 0;
 
             while (status && count < user.student.Subjects.Count)

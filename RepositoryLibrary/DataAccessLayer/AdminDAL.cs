@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Repository;
-using System.Data;
-using System.Security.Cryptography;
 
 namespace RepositoryLibrary.DataAccessLayer
 {
@@ -17,20 +16,11 @@ namespace RepositoryLibrary.DataAccessLayer
             this.databaseManipulation = DatabaseManipulation;
 
         }
-
-
-        string selectTop15StudentQuery =
-        "Select top(15) StudentId,sum(GradePoint) As GradePoint from(Select SubjectResult.StudentId as StudentId, GradeInfo.GradePoint as GradePoint From SubjectResult inner join Subject on SubjectResult.SubjectId= Subject.SubjectId inner join GradeInfo on GradeInfo.Grade= SubjectResult.Grade) finalResult group by finalResult.StudentId having sum(GradePoint)>9 order by sum(GradePoint) desc, StudentId asc";
-        string selectRejectStudentQuery =
-        "Select StudentId,sum(GradePoint) As GradePoint from(Select SubjectResult.StudentId as StudentId, GradeInfo.GradePoint as GradePoint From SubjectResult inner join Subject on SubjectResult.SubjectId= Subject.SubjectId inner join GradeInfo on GradeInfo.Grade= SubjectResult.Grade) finalResult group by finalResult.StudentId having sum(GradePoint)<10";
-        string selectPendingStudentQuery = "Select StudentId from Student where StudentStatus='P'";
-        string insertStatus = "Update Student SET StudentStatus=@char where StudentId=@studentId";
-        string clearStatusField = "Update Student SET StudentStatus='P'";
         public bool SetStudentStatus()
         {
 
-            var resultClear = databaseManipulation.SetInfo(clearStatusField, null);
-            var dataTableTopStudent = databaseManipulation.GetInfo(selectTop15StudentQuery, null) ;
+            var resultClear = databaseManipulation.SetInfo(SqlQueries.clearStatusField, null);
+            var dataTableTopStudent = databaseManipulation.GetInfo(SqlQueries.selectTop15StudentQuery, null) ;
             if (dataTableTopStudent.Rows.Count > 0)
             {
                 foreach (DataRow row in dataTableTopStudent.Rows)
@@ -38,11 +28,11 @@ namespace RepositoryLibrary.DataAccessLayer
                     List<SqlParameter> parameters = new List<SqlParameter>();
                     parameters.Add(new SqlParameter("@char", "A"));
                     parameters.Add(new SqlParameter("@studentId", Convert.ToInt32(row["StudentId"])));
-                    var resultTop = databaseManipulation.SetInfo(insertStatus, parameters);
+                    var resultTop = databaseManipulation.SetInfo(SqlQueries.insertStatus, parameters);
 
                 }
             }
-            var dataTableRejectedStudent = databaseManipulation.GetInfo(selectRejectStudentQuery, null);
+            var dataTableRejectedStudent = databaseManipulation.GetInfo(SqlQueries.selectRejectStudentQuery, null);
             if (dataTableRejectedStudent.Rows.Count > 0)
             {
                 foreach (DataRow row in dataTableRejectedStudent.Rows)
@@ -50,11 +40,11 @@ namespace RepositoryLibrary.DataAccessLayer
                     List<SqlParameter> parameters = new List<SqlParameter>();
                     parameters.Add(new SqlParameter("@char", "R"));
                     parameters.Add(new SqlParameter("@studentId", Convert.ToInt32(row["StudentId"])));
-                    var resultRejected = databaseManipulation.SetInfo(insertStatus, parameters);
+                    var resultRejected = databaseManipulation.SetInfo(SqlQueries.insertStatus, parameters);
 
                 }
             }
-            var dataTablePendingStudent = databaseManipulation.GetInfo(selectPendingStudentQuery, null);
+            var dataTablePendingStudent = databaseManipulation.GetInfo(SqlQueries.selectPendingStudentQuery, null);
             if (dataTablePendingStudent.Rows.Count > 0)
             {
                 foreach (DataRow row in dataTablePendingStudent.Rows)
@@ -62,7 +52,7 @@ namespace RepositoryLibrary.DataAccessLayer
                     List<SqlParameter> parameters = new List<SqlParameter>();
                     parameters.Add(new SqlParameter("@char", "W"));
                     parameters.Add(new SqlParameter("@studentId", Convert.ToInt32(row["StudentId"])));
-                    var resultWaiting = databaseManipulation.SetInfo(insertStatus, parameters);
+                    var resultWaiting = databaseManipulation.SetInfo(SqlQueries.insertStatus, parameters);
                 }
             }
  
@@ -75,19 +65,19 @@ namespace RepositoryLibrary.DataAccessLayer
             List<Student> waitingStudent = new List<Student>();
             List<Student> rejectedStudent = new List<Student>();
 
-            string getStudentFromDB = "select UsersInfo.FirstName, UsersInfo.LastName, StudentId,sum(GradePoint) As GradePoint  from (Select SubjectResult.StudentId as StudentId,GradeInfo.GradePoint as GradePoint  From SubjectResult  inner join Subject  on SubjectResult.SubjectId=Subject.SubjectId inner join GradeInfo on GradeInfo.Grade=SubjectResult.Grade inner join Student on Student.StudentId=SubjectResult.StudentId where Student.StudentStatus=@char) finalResult inner Join UsersInfo on UsersInfo.UserId = finalResult.StudentId group by finalResult.StudentId, UsersInfo.FirstName, UsersInfo.LastName";
+            
 
             List<SqlParameter> parametersApproved = new List<SqlParameter>();
             parametersApproved.Add(new SqlParameter("@char", "A"));
-            var resultTop = databaseManipulation.GetInfo(getStudentFromDB, parametersApproved);
+            var resultTop = databaseManipulation.GetInfo(SqlQueries.getStudentFromDB, parametersApproved);
 
             List<SqlParameter> parametersWaiting = new List<SqlParameter>();
             parametersWaiting.Add(new SqlParameter("@char", "W"));
-            var resultWaiting = databaseManipulation.GetInfo(getStudentFromDB, parametersWaiting);
+            var resultWaiting = databaseManipulation.GetInfo(SqlQueries.getStudentFromDB, parametersWaiting);
 
             List<SqlParameter> parametersRejected = new List<SqlParameter>();
             parametersRejected.Add(new SqlParameter("@char", "R"));
-            var resultRejected = databaseManipulation.GetInfo(getStudentFromDB, parametersRejected);
+            var resultRejected = databaseManipulation.GetInfo(SqlQueries.getStudentFromDB, parametersRejected);
 
             foreach (DataRow row in resultTop.Rows)
             {

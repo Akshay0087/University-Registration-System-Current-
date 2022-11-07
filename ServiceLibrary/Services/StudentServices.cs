@@ -9,10 +9,12 @@ namespace UniversitySystemRegistration.Services
     public class StudentServices : IStudentServices
     {
         private readonly IStudentDAL _studentDAL;
-        public StudentServices(IStudentDAL studentDAL)
+        private readonly IStudentGuardianSubjectValidation _studentValidationBL;
+        public StudentServices(IStudentDAL studentDAL, IStudentGuardianSubjectValidation studentValidationBL)
         {
             _studentDAL = studentDAL;
-           // _studentValidationBL = studentValidationBl;
+            _studentValidationBL = studentValidationBL;
+          
         }
         public int SubjectTotalScoreCalculation(Student student)
         {
@@ -37,21 +39,21 @@ namespace UniversitySystemRegistration.Services
 
         public List<string> GetListOfData(string query)
         {
-            return _studentDAL.StudentGradeList(query);
+            return _studentDAL.StudentGradeSubjectList(query);
         }
 
         public bool SaveStudentSubject(User user)
         {
             return _studentDAL.SetStudentSubject(user);
-
-            /*if ((_studentvalidationbl.subjectvalidation(user) && _studentvalidationbl.gradevalidation(user)))
+            /*
+            if ((_studentValidationBL.subjectValidation(user) && _studentValidationBL.gradeValidation(user)))
             {
-                
+                return _studentDAL.SetStudentSubject(user);
             }
             else
             {
                 return false;
-            }*/
+            }*/        
         }
 
         public bool SaveStudentGuardian(User user)

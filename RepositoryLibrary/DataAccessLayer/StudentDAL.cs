@@ -133,7 +133,7 @@ namespace RepositoryLibrary.DataAccessLayer
 
         }
 
-        public List<String> StudentGradeList(string query)
+        public List<String> StudentGradeSubjectList(string query)
         {
             List<String> list=new List<String>();
             var result = databaseManipulation.GetInfo(query,null);
