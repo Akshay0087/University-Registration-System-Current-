@@ -38,7 +38,7 @@ function reloadStudentSubjectList(userData) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",
-			url: "/Admin/ReloadStudentStatus",
+			url: "/Admin/RegenerateStudentStatusList",
 			data: userData,
 			dataType: "json",
 			success: function (data) {

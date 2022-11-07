@@ -36,7 +36,7 @@ function DownloadCsvFile() {
 			var link = document.createElement("a");
 			link.setAttribute("href", encodedUri);
 			link.setAttribute("download", "Student_Status_Summary.csv");
-			document.body.appendChild(link); // Required for FF
+			document.body.appendChild(link); 
 
 			link.click();
 

@@ -25,5 +25,11 @@ namespace University_Registration_System_Current_
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
         }
+
+        protected void Application_Error()
+        {
+            var ex = Server.GetLastError();
+            //log an exception
+        }
     }
 }

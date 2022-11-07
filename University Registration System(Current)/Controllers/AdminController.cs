@@ -36,24 +36,14 @@ namespace University_Registration_System_Current_.Controllers
         {
             var IsStatus = true;
             var result = adminService.GetListOfStudentStatus();
-            return Json(new
-            {
-                status = IsStatus,
-                approvedList = result.Item1,
-                waitingList = result.Item2,
-                rejectedList = result.Item3,
-            },JsonRequestBehavior.AllowGet) ;
+            return Json(new{status = IsStatus,approvedList = result.Item1,waitingList = result.Item2,rejectedList = result.Item3,},JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult ReloadStudentStatus()
+        public JsonResult RegenerateStudentStatusList()
         {
             var result=adminService.SetStudentRegistrationStatus();
-            return Json(new
-            {
-                result = result,
-               
-            });
+            return Json(new{result = result});
         }
     }
 }

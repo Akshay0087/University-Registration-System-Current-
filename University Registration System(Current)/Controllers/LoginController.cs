@@ -37,18 +37,11 @@ namespace UniversitySystemRegistration.Controllers
                     this.Session["CurrentUser"] = tuple.Item2;
                  }else if(authenticatedUser.UserRole == UserRoles.Admin)
                 {
-
                     path = Url.Action("AdminPanel","Admin");
                 }
 
             }
-
-            return Json(new
-            {
-                result = flag,
-                url = path,
-
-            });
+            return Json(new{result = flag,url = path});
         }
 
         [HttpPost]
