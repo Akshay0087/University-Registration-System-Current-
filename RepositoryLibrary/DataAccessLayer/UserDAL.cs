@@ -100,8 +100,12 @@ namespace UniversitySystemRegistration.Repository
             user1.DateOfBirth = Convert.ToDateTime(dataTable.Rows[0]["DateOfBirth"]);
             user1.NationalIdentityNumber = dataTable.Rows[0]["NID"].ToString();
             user1.PhoneNumber = dataTable.Rows[0]["Phone"].ToString();
-            Enum.TryParse(dataTable.Rows[0]["Role"].ToString(), out UserRoles roleUser);
-            user1.UserRole = roleUser;
+
+            if (Enum.IsDefined(typeof(UserRoles), dataTable.Rows[0]["Role"].ToString()))
+            {
+                Enum.TryParse(dataTable.Rows[0]["Role"].ToString(), out UserRoles roleUser);
+                user1.UserRole = roleUser;
+            }
             return user1;
         }
 

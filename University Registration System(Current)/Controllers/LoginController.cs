@@ -40,6 +40,10 @@ namespace UniversitySystemRegistration.Controllers
                 {
                     path = Url.Action("AdminPanel","Admin");
                 }
+                else
+                {
+                    path = Url.Action("Login","Login");
+                }
 
             }
             return Json(new{result = flag,url = path});
