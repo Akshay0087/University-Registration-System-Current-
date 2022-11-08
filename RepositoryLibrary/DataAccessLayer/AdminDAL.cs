@@ -26,7 +26,7 @@ namespace RepositoryLibrary.DataAccessLayer
                 foreach (DataRow row in dataTableTopStudent.Rows)
                 {
                     List<SqlParameter> parameters = new List<SqlParameter>();
-                    parameters.Add(new SqlParameter("@char", "A"));
+                    parameters.Add(new SqlParameter("@char", "Approved"));
                     parameters.Add(new SqlParameter("@studentId", Convert.ToInt32(row["StudentId"])));
                     var resultTop = databaseManipulation.SetInfo(SqlQueries.insertStatus, parameters);
 
@@ -38,7 +38,7 @@ namespace RepositoryLibrary.DataAccessLayer
                 foreach (DataRow row in dataTableRejectedStudent.Rows)
                 {
                     List<SqlParameter> parameters = new List<SqlParameter>();
-                    parameters.Add(new SqlParameter("@char", "R"));
+                    parameters.Add(new SqlParameter("@char", "Rejected"));
                     parameters.Add(new SqlParameter("@studentId", Convert.ToInt32(row["StudentId"])));
                     var resultRejected = databaseManipulation.SetInfo(SqlQueries.insertStatus, parameters);
 
@@ -50,7 +50,7 @@ namespace RepositoryLibrary.DataAccessLayer
                 foreach (DataRow row in dataTablePendingStudent.Rows)
                 {
                     List<SqlParameter> parameters = new List<SqlParameter>();
-                    parameters.Add(new SqlParameter("@char", "W"));
+                    parameters.Add(new SqlParameter("@char", "Waiting"));
                     parameters.Add(new SqlParameter("@studentId", Convert.ToInt32(row["StudentId"])));
                     var resultWaiting = databaseManipulation.SetInfo(SqlQueries.insertStatus, parameters);
                 }
@@ -68,15 +68,15 @@ namespace RepositoryLibrary.DataAccessLayer
             
 
             List<SqlParameter> parametersApproved = new List<SqlParameter>();
-            parametersApproved.Add(new SqlParameter("@char", "A"));
+            parametersApproved.Add(new SqlParameter("@char", "Approved"));
             var resultTop = databaseManipulation.GetInfo(SqlQueries.getStudentFromDB, parametersApproved);
 
             List<SqlParameter> parametersWaiting = new List<SqlParameter>();
-            parametersWaiting.Add(new SqlParameter("@char", "W"));
+            parametersWaiting.Add(new SqlParameter("@char", "Waiting"));
             var resultWaiting = databaseManipulation.GetInfo(SqlQueries.getStudentFromDB, parametersWaiting);
 
             List<SqlParameter> parametersRejected = new List<SqlParameter>();
-            parametersRejected.Add(new SqlParameter("@char", "R"));
+            parametersRejected.Add(new SqlParameter("@char", "Rejected"));
             var resultRejected = databaseManipulation.GetInfo(SqlQueries.getStudentFromDB, parametersRejected);
 
             foreach (DataRow row in resultTop.Rows)

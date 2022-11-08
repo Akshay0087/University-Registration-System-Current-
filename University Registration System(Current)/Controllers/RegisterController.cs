@@ -5,6 +5,7 @@ using UniversitySystemRegistration.Services;
 
 namespace UniversitySystemRegistration.Controllers
 {
+    [HandleError]
     public class RegisterController : Controller
     {
 

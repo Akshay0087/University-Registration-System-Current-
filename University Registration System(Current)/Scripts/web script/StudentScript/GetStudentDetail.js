@@ -24,19 +24,12 @@ function registerStudentInfoButton() {
 
 			firstname.textContent = obj["StudentGuardianInfo"]["FirstName"];
 			lastname.textContent = obj["StudentGuardianInfo"]["LastName"];
+			if (obj["StudentStatus"] == null) {
+				status.textContent = "Pending";
+			} else {
+				status.textContent = obj["StudentStatus"];
+            }
 
-			if (obj["StudentStatus"] == "P" || obj["StudentStatus"] == '\u0000') {
-				status.textContent = "Pending"
-			}
-			if (obj["StudentStatus"] == "A") {
-				status.textContent = "Accepted"
-			}
-			if (obj["StudentStatus"] == "W") {
-				status.textContent = "Waiting"
-			}
-			if (obj["StudentStatus"] == "R") {
-				status.textContent = "Rejected"
-			}
 			for (var i = 0; i < obj["Subjects"].length; ++i) {
 				if (i == 0) {
 					subject1.textContent = obj["Subjects"][i].SubjectName;

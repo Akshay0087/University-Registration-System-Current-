@@ -31,7 +31,7 @@ namespace RepositoryLibrary.DataAccessLayer
             parameters.Add(new SqlParameter("@userId", user.UserId));
             var dataTable = databaseManipulation.GetInfo(SqlQueries.studentInfoQuery, parameters);
             user.student.StudentGuardianInfo.GuardianId = Convert.ToInt32(dataTable.Rows[0]["GuardianId"]);
-            user.student.StudentStatus = Convert.ToChar(dataTable.Rows[0]["StudentStatus"]);
+            user.student.StudentStatus = Convert.ToString(dataTable.Rows[0]["StudentStatus"]);
             return user;
         }
 
@@ -162,7 +162,7 @@ namespace RepositoryLibrary.DataAccessLayer
                 stud.StudentId = user.UserId;
                 if (!((dataTableResult.Rows[0]["StudentStatus"].ToString()) == ""))
                 {
-                    stud.StudentStatus = Convert.ToChar(dataTableResult.Rows[0]["StudentStatus"]);
+                    stud.StudentStatus = Convert.ToString(dataTableResult.Rows[0]["StudentStatus"]);
                 }
                 user.student = stud;
                 List<SqlParameter> parametersSecond = new List<SqlParameter>();

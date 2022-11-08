@@ -6,6 +6,7 @@ using UniversitySystemRegistration.Models;
 
 namespace University_Registration_System_Current_.Controllers
 {
+    [HandleError]
     public class AdminController : Controller 
     { 
 

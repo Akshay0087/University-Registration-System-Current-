@@ -8,6 +8,7 @@ using UniversitySystemRegistration.Services;
 
 namespace University_Registration_System_Current_.Controllers
 {
+    [HandleError]
     public class StudentInterfaceController : Controller
     {
         public readonly IStudentServices studentService;

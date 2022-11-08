@@ -10,8 +10,8 @@ body {
 }
 
 form {
-    max-width: 300px;
-    margin: 10px auto;
+    max-width: 100%;
+    margin: 2% auto;
     padding: 10px 20px;
     background: #f4f7f8;
     border-radius: 8px;
