@@ -24,6 +24,7 @@ function register_button() {
 		toastr.error("Please fill the required fields");
 		return false;
 	} else {
+
 		var userDataObj = {
 			EmailAddress: emailAddress,
 			PasswordHash: password,

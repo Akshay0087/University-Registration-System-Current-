@@ -21,9 +21,9 @@ namespace University_Registration_System_Current_
 
         protected void Application_BeginRequest()
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
+            Response.Cache.AppendCacheExtension("no-cache");
+            Response.Expires = 0;
         }
 
         protected void Application_Error()

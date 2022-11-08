@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using UniversitySystemRegistration.Models;
 
 namespace ServiceLibrary.Services
@@ -89,6 +90,18 @@ namespace ServiceLibrary.Services
             else
             {
                 return true;
+            }
+        }
+
+        public bool AreFieldsEmpty(User user)
+        {
+            if (String.IsNullOrEmpty(user.EmailAddress)|| String.IsNullOrEmpty(user.Firstname)|| String.IsNullOrEmpty(user.Lastname)|| String.IsNullOrEmpty(user.DateOfBirth.ToString())|| String.IsNullOrEmpty(user.NationalIdentityNumber)|| String.IsNullOrEmpty(user.PhoneNumber)|| String.IsNullOrEmpty(user.ResidentialAddress))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

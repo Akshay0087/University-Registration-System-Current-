@@ -50,7 +50,6 @@ namespace UniversitySystemRegistration.Controllers
         }
 
         [HttpPost]
-        [OutputCache(NoStore =true,Duration =0,VaryByParam ="None")]
         public JsonResult Logout()
         {
             Session.Clear();

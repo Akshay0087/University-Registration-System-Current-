@@ -52,36 +52,44 @@ namespace UniversitySystemRegistration
         {
             var status = true;
             Dictionary<string, string> result = new Dictionary<string, string>();
-            if (!_registerValidations.IsEmailValid(user))
+            if (_registerValidations.AreFieldsEmpty(user))
             {
                 status = false;
-                result.Add("email", "Email not valid");
+                result.Add("", "Some fields are empty");
             }
-            if (!_registerValidations.IsFirstNameValid(user))
+            else
             {
-                status = false;
-                result.Add("fname", "Firstname not valid");
-            }
-            if (!_registerValidations.IsLastNameValid(user))
-            {
-                status = false;
-                result.Add("lname", "Lastname not valid");
-            }
-            if (!_registerValidations.IsNationalIdentityNumberValid(user))
-            {
-                status = false;
-                result.Add("NID", "National Identity Number not valid");
-            }
-            if (!_registerValidations.IsAddressValid(user))
-            {
-                status = false;
-                result.Add("address", "Address not valid");
-            }
+                if (!_registerValidations.IsEmailValid(user))
+                {
+                    status = false;
+                    result.Add("email", "Email not valid");
+                }
+                if (!_registerValidations.IsFirstNameValid(user))
+                {
+                    status = false;
+                    result.Add("fname", "Firstname not valid");
+                }
+                if (!_registerValidations.IsLastNameValid(user))
+                {
+                    status = false;
+                    result.Add("lname", "Lastname not valid");
+                }
+                if (!_registerValidations.IsNationalIdentityNumberValid(user))
+                {
+                    status = false;
+                    result.Add("NID", "National Identity Number not valid");
+                }
+                if (!_registerValidations.IsAddressValid(user))
+                {
+                    status = false;
+                    result.Add("address", "Address not valid");
+                }
 
-            if (!_registerValidations.IsPhoneNumberValid(user))
-            {
-                status = false;
-                result.Add("phone", "Phone Number not valid");
+                if (!_registerValidations.IsPhoneNumberValid(user))
+                {
+                    status = false;
+                    result.Add("phone", "Phone Number not valid");
+                }
             }
             return Tuple.Create(status, result);
         }

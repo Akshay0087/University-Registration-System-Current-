@@ -47,14 +47,12 @@
     <Compile Include="DataAccessLayer\DatabaseConnection.cs" />
     <Compile Include="DataAccessLayer\IAdminDAL.cs" />
     <Compile Include="DataAccessLayer\SqlQueries.cs" />
-    <Compile Include="Models\DbOperation.cs" />
     <Compile Include="DataAccessLayer\IDatabaseConnection.cs" />
     <Compile Include="DataAccessLayer\IstudentDAL.cs" />
     <Compile Include="DataAccessLayer\IUserDAL.cs" />
     <Compile Include="DataAccessLayer\StudentDAL.cs" />
     <Compile Include="Models\GradeScore.cs" />
     <Compile Include="Models\Guardian.cs" />
-    <Compile Include="Models\StatusScore.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\User.cs" />

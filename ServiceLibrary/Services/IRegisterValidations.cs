@@ -4,6 +4,7 @@ namespace ServiceLibrary.Services
 {
     public interface IRegisterValidations
     {
+        bool AreFieldsEmpty(User user);
         bool IsAddressValid(User user);
         bool IsEmailValid(User user);
         bool IsFirstNameValid(User user);

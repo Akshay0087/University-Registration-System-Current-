@@ -10,8 +10,7 @@ namespace ServiceLibrary.Services
 
         private readonly IAdminDAL _adminDAL;
         public AdminServices(IAdminDAL adminDAL)
-        {
-
+        { 
             _adminDAL = adminDAL;
         }
 

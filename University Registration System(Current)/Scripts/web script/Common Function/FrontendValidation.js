@@ -5,8 +5,7 @@ function EmailValidation(element) {
 	if (!emailRegex.test(element.value)) {
 		toastr.error("Invalid Email Format");
 		element.value = "";
-	}
-	if (element.value.length < 8 || element.value.length > 50) {
+	} else if (element.value.length < 8 || element.value.length > 50) {
 		toastr.error("Incorrect Email length");
 		element.value = "";
 	}
