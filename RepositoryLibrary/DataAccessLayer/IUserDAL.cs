@@ -7,7 +7,6 @@ namespace UniversitySystemRegistration.Repository
         bool LoginCheck(User userData);
         bool IsUserUniqueInDB(User userData);
         bool insertUserDataInDb(User user);
-
         User GetUserDataInDb(User user);
     }
 }

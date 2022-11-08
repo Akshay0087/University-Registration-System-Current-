@@ -8,13 +8,12 @@ namespace UniversitySystemRegistration.Repository
 {
     public class UserDAL : IUserDAL
     {
-     
+
         private readonly IDatabaseConnection databaseManipulation;
         public UserDAL(IDatabaseConnection DatabaseManipulation)
         {
             this.databaseManipulation = DatabaseManipulation;
         }
-      
 
         public bool LoginCheck(User userData)
         {
@@ -24,10 +23,13 @@ namespace UniversitySystemRegistration.Repository
             try
             {
                 var result = databaseManipulation.GetInfo(SqlQueries.loginCheckQuery, parameters);
-                if (!(result.Rows.Count > 0)) { return answer; }
+                if (!(result.Rows.Count > 0))
+                {
+                    return answer;
+                }
                 string dbpassword = (result.Rows[0].ItemArray[0]).ToString();
                 answer = dbpassword.Equals(userData.PasswordHash) ? true : false;
-                answer = BCrypt.Net.BCrypt.Verify(userData.PasswordHash,dbpassword);
+                answer = BCrypt.Net.BCrypt.Verify(userData.PasswordHash, dbpassword);
             }
             catch (Exception error)
             {
@@ -102,7 +104,6 @@ namespace UniversitySystemRegistration.Repository
             user1.UserRole = roleUser;
             return user1;
         }
-
 
     }
 }

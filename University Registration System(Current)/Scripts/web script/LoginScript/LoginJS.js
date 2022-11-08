@@ -7,16 +7,16 @@
 });
 
 function login_button() {
-	
-	var emailAddress = $("#email").val(); 
-	var password = $("#pword").val(); 
+
+	var emailAddress = $("#email").val();
+	var password = $("#pword").val();
 
 	toastr.options.timeOut = 100000;
 
 	if (emailAddress == "" || password == "") {
 		toastr.error("Please fill the required fields");
 	} else {
-		
+
 		var authObj = {
 			emailAddress: emailAddress,
 			passwordHash: password
@@ -28,7 +28,7 @@ function login_button() {
 				setTimeout(window.location.href = response.url, 2000);
 
 			} else {
-				toastr.error('Login Failed');
+				toastr.error('Login Failed.Please check email and password again');
 				return false;
 			}
 		})

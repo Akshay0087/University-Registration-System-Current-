@@ -1,7 +1,6 @@
 ﻿using ServiceLibrary.Services;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UniversitySystemRegistration.Models;
 using UniversitySystemRegistration.Repository;
 using UniversitySystemRegistration.Services;
@@ -12,7 +11,6 @@ namespace UniversitySystemRegistration
     {
         private readonly IUserDAL _userDAL;
         private readonly IRegisterValidations _registerValidations;
-
 
         public UserServices(IUserDAL userDAL, IRegisterValidations registerValidations)
         {
@@ -45,7 +43,6 @@ namespace UniversitySystemRegistration
 
                 Dictionary<string, string> result = new Dictionary<string, string>();
                 return Tuple.Create(false, true, result);
-
 
             }
 
@@ -88,10 +85,6 @@ namespace UniversitySystemRegistration
             }
             return Tuple.Create(status, result);
         }
-
-
-        
-        
 
     }
 }

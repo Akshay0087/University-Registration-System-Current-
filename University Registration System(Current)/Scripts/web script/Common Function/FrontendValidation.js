@@ -12,8 +12,6 @@ function EmailValidation(element) {
 	}
 }
 
-
-
 function NameValidation(element) {
 	if (element.value.length < 2 || element.value.length > 50) {
 		var attributeName = element.getAttribute("name")
@@ -43,11 +41,10 @@ function AddressValidation(element) {
 	}
 }
 
-function PhoneNumberValidation(element)
-{
+function PhoneNumberValidation(element) {
 	var phoneNumberPattern = /^[0-9]*$/;
 
-	if (!(element.value.length==8 || element.value.length==7)) {
+	if (!(element.value.length == 8 || element.value.length == 7)) {
 		toastr.error("Incorrect Phone number length (8 character)");
 		element.value = "";
 	}

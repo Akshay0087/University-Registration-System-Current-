@@ -1,9 +1,6 @@
 ﻿using RepositoryLibrary.DataAccessLayer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UniversitySystemRegistration.Models;
 
 namespace ServiceLibrary.Services
@@ -23,8 +20,9 @@ namespace ServiceLibrary.Services
             return _adminDAL.SetStudentStatus();
         }
 
-        public Tuple<List<Student>, List<Student>, List<Student>> GetListOfStudentStatus(){
+        public Tuple<List<Student>, List<Student>, List<Student>> GetListOfStudentStatus()
+        {
             return _adminDAL.GetStudentStatusFromDB();
-    }
+        }
     }
 }

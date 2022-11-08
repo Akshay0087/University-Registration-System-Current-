@@ -5,9 +5,10 @@
 		return false;
 	});
 });
+
 function register_button() {
 
-	
+
 	var emailAddress = $("#email").val();
 	var password = $("#password1").val();
 	var firstname = $("#fname").val();
@@ -35,7 +36,7 @@ function register_button() {
 		};
 
 		sendRegisterData(userDataObj).then((response) => {
-			if (response.data=="insert") {
+			if (response.data == "insert") {
 				if (response.status) {
 					toastr.success("Registration Successful");
 					setTimeout(redirectToLogin, 3000);
@@ -54,10 +55,10 @@ function register_button() {
 					var element = document.getElementById(key);
 					toastr.error(dataJson[key]);
 					element.value = "";
-					
+
 				}
 				return false;
-			} 
+			}
 
 
 		})

@@ -19,61 +19,51 @@ function registerStudentInfoButton() {
 
 	toastr.options.timeOut = 100000;
 
-
-	var authObjj = {
-		subject: [
-					{
-						SubjectGrade: grade1,
-						SubjectName: subject1
-						}, {
-							SubjectGrade: grade2,
-							SubjectName: subject2
-						},
-						{
-							SubjectGrade: grade3,
-							SubjectName: subject3
-						}
-						],
+	var subjectResult = {
+		subject: [{
+			SubjectGrade: grade1,
+			SubjectName: subject1
+		}, {
+			SubjectGrade: grade2,
+			SubjectName: subject2
+		},
+		{
+			SubjectGrade: grade3,
+			SubjectName: subject3
+		}
+		],
 		guardian: {
 			FirstName: firstname,
 			LastName: lastname
 		}
 	};
 
-
-	var authObj = {
-		
-	};
-
-	sendData(authObjj).then((response) => {
+	sendSubjectData(subjectResult).then((response) => {
 		if (response.result) {
 			toastr.success("Information Successfully registered");
 			setTimeout(redirect, 2000);
 		} else {
 			toastr.error('Information saving failed.Please try again');
-			setTimeout("/StudentInterface/Main",2000);
+			setTimeout("/StudentInterface/Main", 2000);
 			return false;
 		}
 	})
 		.catch((error) => {
 			toastr.error('An error occured. Please try again later');
-			console.log(error);
 		});
 
 }
-
 
 function redirect() {
 	window.location.href = "/StudentInterface/DetailsScreen";
 }
 
-
-function sendData(userlogin) {
+function sendSubjectData(subjectGrades) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",
 			url: "/StudentInterface/SaveStudentSubjectGuardianInfo",
-			data: userlogin,
+			data: subjectGrades,
 			dataType: "json",
 			success: function (data) {
 				resolve(data)

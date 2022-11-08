@@ -1,9 +1,7 @@
 ﻿using RepositoryLibrary.DataAccessLayer;
-using System.Collections.Generic;
 using System;
 using System.Linq;
 using UniversitySystemRegistration.Models;
-using UniversitySystemRegistration.Services;
 
 namespace ServiceLibrary.Services
 {
@@ -18,7 +16,6 @@ namespace ServiceLibrary.Services
 
         public bool subjectValidation(User user)
         {
-            
 
             bool status = true;
             var subjectList = studentDAL.StudentGradeSubjectList(SqlQueries.getSubjectList);
@@ -26,7 +23,12 @@ namespace ServiceLibrary.Services
 
             while (status && count < user.student.Subjects.Count)
             {
-                status = subjectList.Any(s => s == user.student.Subjects[count].SubjectName);
+                if (!(user.student.Subjects[count].SubjectName == null))
+                {
+                    status = subjectList.Any(s => s.Contains(user.student.Subjects[count].SubjectName));
+
+                }
+                count++;
             }
             return status;
 
@@ -40,13 +42,15 @@ namespace ServiceLibrary.Services
 
             while (status && count < user.student.Subjects.Count)
             {
-                status = gradeList.Any(s => s.Equals(user.student.Subjects[count].SubjectGrade));
+                if (!(user.student.Subjects[count].SubjectGrade.Equals('\0')))
+                {
+                    status = gradeList.Any(s => s.Contains(user.student.Subjects[count].SubjectGrade));
+                }
+                count++;
             }
             return status;
 
         }
-
-
 
     }
 }

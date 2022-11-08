@@ -11,13 +11,11 @@ namespace UniversitySystemRegistration.Services
 
         bool SaveStudentSubject(User user);
 
-
         bool SaveStudentGuardian(User user);
 
         Tuple<bool, User> GetStudentDataFromDb(User user);
 
         Student StudentInfoForDetailScreen(User user);
-
 
     }
 }

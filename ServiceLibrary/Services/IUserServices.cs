@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using UniversitySystemRegistration.Models;
 
 namespace UniversitySystemRegistration.Services
@@ -11,6 +10,6 @@ namespace UniversitySystemRegistration.Services
         bool insertUserData(User user);
         User GetUserData(User user);
         Tuple<bool, bool, Dictionary<string, string>> UserCheck(User user);
-    
+
     }
 }

@@ -11,7 +11,6 @@ $(function () {
 	});
 });
 
-
 function SubjectListArray(element) {
 	LoadSubjectData(obj = null).then((response) => {
 		if (response.subjectList) {
@@ -37,13 +36,12 @@ function SubjectListArray(element) {
 		});
 }
 
-
-function LoadSubjectData(userlogin) {
+function LoadSubjectData(subjects) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",
 			url: "/StudentInterface/GetSubjectList",
-			data: userlogin,
+			data: subjects,
 			dataType: "json",
 			success: function (data) {
 				resolve(data)
@@ -80,13 +78,12 @@ function GradeListArray(element) {
 		});
 }
 
-
-function LoadGradeData(userlogin) {
+function LoadGradeData(grades) {
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: "POST",
 			url: "/StudentInterface/GetGradeList",
-			data: userlogin,
+			data: grades,
 			dataType: "json",
 			success: function (data) {
 				resolve(data)

@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace UniversitySystemRegistration.Repository
 {
-    public class DatabaseConnection:IDatabaseConnection
+    public class DatabaseConnection : IDatabaseConnection
     {
         public DatabaseConnection() { }
-        SqlConnection DbConnection=null;
-        public DataTable GetInfo(string query, List<SqlParameter> parameters)//select
+        SqlConnection DbConnection = null;
+        public DataTable GetInfo(string query, List<SqlParameter> parameters)
         {
             DataTable tableData = new DataTable();
             OpenDbConnection();
@@ -21,10 +20,8 @@ namespace UniversitySystemRegistration.Repository
                 {
                     try
                     {
-                      
-                        
+
                         SqlCommand cmd = new SqlCommand(query, DbConnection);
-                        // create data adapter
                         cmd.CommandType = CommandType.Text;
                         if (parameters != null)
                         {
@@ -40,27 +37,25 @@ namespace UniversitySystemRegistration.Repository
 
                         CloseDbConnection();
                     }
-
                     catch (Exception error)
                     {
                         throw error;
                     }
                 }
             }
-            
+
             return tableData;
         }
 
-
-        public bool SetInfo(string query, List<SqlParameter> parameters)//insert
+        public bool SetInfo(string query, List<SqlParameter> parameters) 
         {
-           
+
             OpenDbConnection();
 
-            var result=false;
+            var result = false;
             SqlTransaction transaction;
             transaction = DbConnection.BeginTransaction();
-            
+
             SqlCommand sqlcom = new SqlCommand(query, DbConnection);
             sqlcom.Transaction = transaction;
             sqlcom.CommandType = CommandType.Text;
@@ -73,8 +68,8 @@ namespace UniversitySystemRegistration.Repository
             try
             {
 
-                int rowAffected=sqlcom.ExecuteNonQuery();
-                result =rowAffected>0?  true : false;
+                int rowAffected = sqlcom.ExecuteNonQuery();
+                result = rowAffected > 0 ? true : false;
                 transaction.Commit();
             }
             catch (Exception error)
@@ -86,13 +81,9 @@ namespace UniversitySystemRegistration.Repository
             {
                 CloseDbConnection();
             }
-            
 
             return result;
         }
-
-      
-        
 
         public void OpenDbConnection()
         {
@@ -106,7 +97,7 @@ namespace UniversitySystemRegistration.Repository
                     CloseDbConnection();
                 }
                 DbConnection.Open();
-           
+
             }
             catch (Exception error)
             {

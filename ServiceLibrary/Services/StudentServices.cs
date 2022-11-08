@@ -14,7 +14,7 @@ namespace UniversitySystemRegistration.Services
         {
             _studentDAL = studentDAL;
             _studentValidationBL = studentValidationBL;
-          
+
         }
         public int SubjectTotalScoreCalculation(Student student)
         {
@@ -36,7 +36,6 @@ namespace UniversitySystemRegistration.Services
             return totalScore;
         }
 
-
         public List<string> GetListOfData(string query)
         {
             return _studentDAL.StudentGradeSubjectList(query);
@@ -44,8 +43,6 @@ namespace UniversitySystemRegistration.Services
 
         public bool SaveStudentSubject(User user)
         {
-            return _studentDAL.SetStudentSubject(user);
-            /*
             if ((_studentValidationBL.subjectValidation(user) && _studentValidationBL.gradeValidation(user)))
             {
                 return _studentDAL.SetStudentSubject(user);
@@ -53,14 +50,14 @@ namespace UniversitySystemRegistration.Services
             else
             {
                 return false;
-            }*/        
+            }
         }
 
         public bool SaveStudentGuardian(User user)
         {
-                return _studentDAL.SetStudentGuardian(user); 
+            return _studentDAL.SetStudentGuardian(user);
         }
-        public Tuple<bool,User> GetStudentDataFromDb(User user)
+        public Tuple<bool, User> GetStudentDataFromDb(User user)
         {
             return _studentDAL.GetStudentData(user);
         }
@@ -72,6 +69,5 @@ namespace UniversitySystemRegistration.Services
             return stud;
         }
 
-        
     }
 }

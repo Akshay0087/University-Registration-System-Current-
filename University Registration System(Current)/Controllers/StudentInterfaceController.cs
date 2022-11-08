@@ -105,6 +105,7 @@ namespace University_Registration_System_Current_.Controllers
         public JsonResult SaveStudentSubjectGuardianInfo(List<Subject> subject, Guardian guardian)
         {
             var flag = true;
+            bool GuardianResponse = false;
             var user = new User();
             user = (User)this.Session["CurrentUser"];
             Student stud = new Student();
@@ -112,13 +113,11 @@ namespace University_Registration_System_Current_.Controllers
             stud.StudentId = user.UserId;
             stud.Subjects = subject;
             user.student = stud;
-            bool GuardianResponse = studentService.SaveStudentGuardian(user);
             bool SubjectResponse = studentService.SaveStudentSubject(user);
+            if (SubjectResponse) { GuardianResponse = studentService.SaveStudentGuardian(user); }
             var result = ((SubjectResponse || GuardianResponse) == false) ? flag = false : flag = true;
             return Json(new
-            {
-                result = flag,
-            });
+            {result = flag});
         }
 
     }

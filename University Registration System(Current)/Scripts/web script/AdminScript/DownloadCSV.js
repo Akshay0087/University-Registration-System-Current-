@@ -41,7 +41,7 @@ function DownloadCsvFile() {
 			link.click();
 
 		} else {
-			toastr.error('Login Failed');
+			toastr.error('Download Failed');
 			return false;
 		}
 	}).catch((error) => {

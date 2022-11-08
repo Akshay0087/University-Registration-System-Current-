@@ -29,7 +29,9 @@ namespace University_Registration_System_Current_
         protected void Application_Error()
         {
             var ex = Server.GetLastError();
-            //log an exception
         }
+
+
+
     }
 }
