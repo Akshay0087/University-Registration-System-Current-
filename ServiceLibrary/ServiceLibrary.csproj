@@ -50,7 +50,7 @@
     <Compile Include="Services\IStudentServices.cs" />
     <Compile Include="Services\IUserServices.cs" />
     <Compile Include="Services\RegisterValidation.cs" />
-    <Compile Include="Services\StudentGuardianSubjectValidation.cs" />
+    <Compile Include="Services\StudentGradeSubjectValidation.cs" />
     <Compile Include="Services\StudentServices.cs" />
     <Compile Include="Services\UserServices.cs" />
   </ItemGroup>

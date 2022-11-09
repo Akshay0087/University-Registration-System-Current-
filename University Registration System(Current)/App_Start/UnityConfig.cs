@@ -22,7 +22,7 @@ namespace University_Registration_System_Current_
             container.RegisterType<IStudentDAL, StudentDAL>();
             container.RegisterType<IAdminDAL, AdminDAL>();
             container.RegisterType<IAdminServices, AdminServices>();
-            container.RegisterType<IStudentGuardianSubjectValidation, StudentGuardianSubjectValidation>();
+            container.RegisterType<IStudentGradeSubjectValidation, StudentGradeSubjectValidation>();
             container.RegisterType<IRegisterValidations, RegisterValidation>();
 
 

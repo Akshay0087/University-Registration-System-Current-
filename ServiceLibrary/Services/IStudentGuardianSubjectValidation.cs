@@ -2,7 +2,7 @@
 
 namespace ServiceLibrary.Services
 {
-    public interface IStudentGuardianSubjectValidation
+    public interface IStudentGradeSubjectValidation
     {
         bool subjectValidation(User user);
 

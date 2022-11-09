@@ -151,27 +151,21 @@ namespace RepositoryLibrary.DataAccessLayer
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@studentId", user.UserId));
             var dataTableResult = databaseManipulation.GetInfo(SqlQueries.getGuardianIdFromStudentId, parameters);
-            if (dataTableResult.Rows.Count > 0)
-            {
+            if (dataTableResult.Rows.Count > 0){
                 status = true;
                 Student stud = new Student();
-
                 Guardian guardian = new Guardian();
                 guardian.GuardianId = Convert.ToInt32(dataTableResult.Rows[0]["GuardianId"]);
                 stud.StudentGuardianInfo = guardian;
                 stud.StudentId = user.UserId;
-                if (!((dataTableResult.Rows[0]["StudentStatus"].ToString()) == ""))
-                {
-                    stud.StudentStatus = Convert.ToString(dataTableResult.Rows[0]["StudentStatus"]);
-                }
+                if (!((dataTableResult.Rows[0]["StudentStatus"].ToString()) == "")){
+                    stud.StudentStatus = Convert.ToString(dataTableResult.Rows[0]["StudentStatus"]);}
                 user.student = stud;
                 List<SqlParameter> parametersSecond = new List<SqlParameter>();
                 parametersSecond.Add(new SqlParameter("@studentId", user.UserId));
                 var dataTableResultSecond = databaseManipulation.GetInfo(SqlQueries.getStudentSubjects, parametersSecond);
-                foreach (DataRow row in dataTableResultSecond.Rows)
-                {
-                    user.student.Subjects.Add(new Subject(row["SubjectName"].ToString(), Convert.ToInt32(row["SubjectId"]), Convert.ToChar(row["Grade"])));
-                }
+                foreach (DataRow row in dataTableResultSecond.Rows){
+                    user.student.Subjects.Add(new Subject(row["SubjectName"].ToString(), Convert.ToInt32(row["SubjectId"]), Convert.ToChar(row["Grade"])));}
                 List<SqlParameter> parameterThird = new List<SqlParameter>();
                 parameterThird.Add(new SqlParameter("@guardianId", user.student.StudentGuardianInfo.GuardianId));
                 var dataTableResultThird = databaseManipulation.GetInfo(query, parameterThird);

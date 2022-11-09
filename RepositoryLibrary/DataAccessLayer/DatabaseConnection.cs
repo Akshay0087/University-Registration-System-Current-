@@ -94,10 +94,8 @@ namespace UniversitySystemRegistration.Repository
 
                 if (DbConnection.State == ConnectionState.Open)
                 {
-                    CloseDbConnection();
-                }
+                CloseDbConnection(); }
                 DbConnection.Open();
-
             }
             catch (Exception error)
             {

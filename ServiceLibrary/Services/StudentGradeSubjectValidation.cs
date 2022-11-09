@@ -5,11 +5,11 @@ using UniversitySystemRegistration.Models;
 
 namespace ServiceLibrary.Services
 {
-    public class StudentGuardianSubjectValidation : IStudentGuardianSubjectValidation
+    public class StudentGradeSubjectValidation : IStudentGradeSubjectValidation
     {
         private readonly IStudentDAL studentDAL;
 
-        public StudentGuardianSubjectValidation(IStudentDAL _studentDAL)
+        public StudentGradeSubjectValidation(IStudentDAL _studentDAL)
         {
             studentDAL = _studentDAL;
         }
